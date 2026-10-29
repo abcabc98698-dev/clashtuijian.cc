@@ -1,0 +1,113 @@
+---
+import { brandsSection } from '../config';
+import { topTenBrands, AFFILIATE_DISCLOSURE } from '../data/brands';
+---
+<section id={brandsSection.id} class="brands" data-ground aria-labelledby="partners-heading">
+  <div class="wrap" data-scene="view">
+    <div class="kicker">{brandsSection.kicker}</div>
+    <h2 id="partners-heading" class="h-section rv" data-w="0 0.4">{brandsSection.title}</h2>
+    <p class="lede rv" data-w="0.1 0.4">{brandsSection.lede}</p>
+  </div>
+
+  <div class="wrap top10-grid" data-scene="view" role="list">
+    {topTenBrands.map((b, i) => (
+      <article
+        class:list={['top10-card', 'rv', { 'top10-card--primary': b.isPrimaryPick }]}
+        data-w="0 0.45 0.04"
+        data-i={i}
+        role="listitem"
+        style={`--brand-accent: ${b.accent}`}
+      >
+        <div class="top10-head">
+          <span class="top10-rank">#{String(b.rank).padStart(2, '0')}</span>
+          <span class="top10-badge">{b.badge}</span>
+        </div>
+        <h3 class="top10-title">
+          <a href={`/brands/${b.slug}`}>{b.name}</a>
+        </h3>
+        <p class="top10-line">{b.lineType}</p>
+        <div class="top10-meta">
+          <div>
+            <span class="meta-label">起步参考价</span>
+            <strong>{b.entryPriceText}</strong>
+          </div>
+          <div>
+            <span class="meta-label">专属优惠码</span>
+            <code>{b.promoCode}</code>
+          </div>
+        </div>
+        <p class="top10-client">{b.clientText}</p>
+        <div class="top10-actions">
+          <a
+            class="btn btn-primary"
+            href={b.registerUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+          >
+            直达官网注册 →
+          </a>
+          <a class="btn btn-secondary" href={`/brands/${b.slug}`}>
+            评测与套餐
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- GEO & Featured Snippet Native Comparison Table -->
+  <div class="wrap geo-table-wrap">
+    <div class="geo-table-head">
+      <div>
+        <div class="kicker">GEO Structured Comparison Matrix</div>
+        <h3 class="geo-table-title">2026 前十名主力 Clash 专线机场核心参数对比总表</h3>
+      </div>
+      <span class="table-note">数据基准：2026-08-11 实验室测速快照 + 2026-10 官方公开套餐核验</span>
+    </div>
+    <div class="table-scroll card elev-sm">
+      <table class="obs-table">
+        <thead>
+          <tr>
+            <th scope="col">排名</th>
+            <th scope="col">机场品牌</th>
+            <th scope="col">运营年份</th>
+            <th scope="col">专线架构与传输协议</th>
+            <th scope="col">起步参考价</th>
+            <th scope="col">永久流量包</th>
+            <th scope="col">客户端接入模式</th>
+            <th scope="col">优惠码</th>
+            <th scope="col">深度档案</th>
+          </tr>
+        </thead>
+        <tbody>
+          {topTenBrands.map((b) => (
+            <tr class:list={[{ 'is-primary-row': b.isPrimaryPick }]}>
+              <td><strong>#{String(b.rank).padStart(2, '0')}</strong></td>
+              <td>
+                <a href={`/brands/${b.slug}`}>{b.name}</a>
+                {b.isPrimaryPick && <span class="table-badge" style="margin-left: 6px;">第一主推</span>}
+              </td>
+              <td>{b.founded}</td>
+              <td>{b.lineType} · <code>{b.protocols.join('/')}</code></td>
+              <td class="table-price">{b.entryPriceText}</td>
+              <td>{b.hasUnlimitedPack ? '✓ 支持永久包' : '周期套餐'}</td>
+              <td>
+                {b.clientMode === 'both'
+                  ? '自研客户端 + 通用订阅'
+                  : b.clientMode === 'custom-only'
+                    ? '仅官方专属客户端'
+                    : '标准通用订阅'}
+              </td>
+              <td><code>{b.promoCode}</code></td>
+              <td><a href={`/brands/${b.slug}`}>{b.name}评测 →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="wrap top10-foot">
+    <p class="disclosure-note">{AFFILIATE_DISCLOSURE}</p>
+    <a class="btn btn-primary" href="/brands">进入完整 42 家机场品牌库检索与筛选 →</a>
+  </div>
+</section>

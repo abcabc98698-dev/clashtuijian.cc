@@ -1,0 +1,778 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import GuidesNav from '../../components/GuidesNav.astro';
+import { brands, getBrandBySlug, AFFILIATE_DISCLOSURE, type BrandItem } from '../../data/brands';
+
+export function getStaticPaths() {
+  return brands.map((brand) => ({
+    params: { slug: brand.slug },
+    props: { brand },
+  }));
+}
+
+interface Props {
+  brand: BrandItem;
+}
+
+const { brand } = Astro.props;
+const primaryPick = getBrandBySlug('guangsuyun')!;
+
+const relatedBrands = brand.relatedSlugs
+  .map((s) => getBrandBySlug(s))
+  .filter((item): item is BrandItem => Boolean(item));
+
+if (brand.slug !== 'guangsuyun' && !relatedBrands.some((r) => r.slug === 'guangsuyun')) {
+  relatedBrands.unshift(primaryPick);
+}
+
+const canonicalUrl = `https://clashtuijian.cc/brands/${brand.slug}`;
+const brandOgImage = brand.measuredPng ? brand.measuredPng.src : '/media/hero/og-cover.png';
+const brandOgWidth = brand.measuredPng ? 1122 : 1200;
+const brandOgHeight = brand.measuredPng ? 1402 : 630;
+const articleImages = brand.measuredPng
+  ? [`https://clashtuijian.cc${brand.measuredPng.src}`, 'https://clashtuijian.cc/media/hero/og-cover.png']
+  : ['https://clashtuijian.cc/media/hero/og-cover.png'];
+
+const needsModernCore = brand.protocols.some((p) => /VLESS|Hysteria|AnyTLS|TUIC/i.test(p));
+const protocolSummary = brand.protocols.join(' / ');
+
+const customSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '首页 (推荐 Clash)',
+        item: 'https://clashtuijian.cc/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '42家机场品牌评测库',
+        item: 'https://clashtuijian.cc/brands',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: `${brand.name} 深度评测`,
+        item: canonicalUrl,
+      },
+    ],
+  },
+  {
+    '@type': 'Article',
+    '@id': `${canonicalUrl}#article`,
+    headline: brand.seo.h1,
+    description: brand.seo.metaDescription,
+    image: articleImages,
+    datePublished: brand.verifiedDate,
+    dateModified: brand.updatedDate,
+    author: {
+      '@id': 'https://clashtuijian.cc/#organization',
+    },
+    publisher: {
+      '@id': 'https://clashtuijian.cc/#organization',
+    },
+    mainEntityOfPage: {
+      '@id': `${canonicalUrl}#webpage`,
+    },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${canonicalUrl}#faq`,
+    mainEntity: brand.seo.faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.a,
+      },
+    })),
+  },
+];
+
+function parseMbpsWidth(downloadText: string): number {
+  const num = parseFloat(downloadText.replace(/[^0-9.]/g, ''));
+  if (Number.isNaN(num)) return 55;
+  return Math.min(100, Math.max(22, Math.round((num / 1500) * 100)));
+}
+---
+
+<Layout
+  title={brand.seo.title}
+  description={brand.seo.metaDescription}
+  keywords={[brand.seo.primaryKeyword, ...brand.seo.secondaryKeywords]}
+  canonical={canonicalUrl}
+  cover={brandOgImage}
+  ogImageWidth={brandOgWidth}
+  ogImageHeight={brandOgHeight}
+  ogType="article"
+  publishedTime={brand.verifiedDate}
+  updatedDate={brand.updatedDate}
+  category="Clash 机场深度评测"
+  tags={[brand.name, ...brand.protocols, brand.isTopTen ? 'Top10主力机场' : '42家品牌库']}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.25;"
+  customSchema={customSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+      <!-- Breadcrumb & Detail Hero -->
+      <section class="detail-hero">
+        <nav class="breadcrumb" aria-label="面包屑导航">
+          <a href="/">首页 (推荐 Clash)</a>
+          <span>/</span>
+          <a href="/brands">42家机场品牌库</a>
+          <span>/</span>
+          <span aria-current="page">{brand.name} 深度评测</span>
+        </nav>
+
+        <div class="detail-hero-grid">
+          <div class="detail-hero-copy">
+            <div class="detail-badges">
+              <span class="badge-rank">#{String(brand.rank).padStart(2, '0')}</span>
+              <span class={`badge-tier ${brand.isTopTen ? 'is-top' : ''}`}>
+                {brand.isPrimaryPick ? '★ 年度第一主推' : brand.isTopTen ? 'TOP 10 核心推荐' : '42家全景观察名录'}
+              </span>
+              <span class={`badge-status status-${brand.dataStatus}`}>
+                {brand.dataStatus === 'measured-plus-vendor'
+                  ? '✓ 含 2026-08-11 真实测速图 + 官方核验'
+                  : brand.dataStatus === 'vendor'
+                    ? '官方核验参数 (Vendor Data)'
+                    : '历史归档样本 (Historical)'}
+              </span>
+              <span class="badge-date">核验日期：{brand.verifiedDate}</span>
+            </div>
+
+            <h1 class="detail-h1">{brand.seo.h1}</h1>
+
+            <!-- GEO TL;DR Direct Conclusion Card -->
+            <div class="geo-tldr-box elev-sm">
+              <div class="geo-tldr-head">
+                <span class="geo-tag">GEO 速览结论 · AI 摘要友好</span>
+                <span class="geo-kw">核心词：{brand.seo.primaryKeyword}</span>
+              </div>
+              <p class="geo-summary">{brand.summary}</p>
+              <p class="geo-desc">{brand.description}</p>
+              <div class="geo-questions">
+                {brand.seo.geoQuestions.map((q) => (
+                  <span class="geo-q-chip">Q: {q}</span>
+                ))}
+              </div>
+            </div>
+
+            <div class="highlight-pills">
+              {brand.highlights.map((h) => (
+                <span class="highlight-pill">✦ {h}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Direct Affiliate Conversion Console -->
+          <aside class="conversion-panel card elev-md" aria-label="官方注册与参数速览">
+            <div class="conv-header">
+              <div>
+                <span class="card-kicker">{brand.badge}</span>
+                <h2 class="conv-title">{brand.name} 官方通道</h2>
+              </div>
+              <div class="conv-price-box">
+                <span class="conv-price-label">入门门槛</span>
+                <strong class="conv-price-val">{brand.entryPriceText}</strong>
+              </div>
+            </div>
+
+            <dl class="conv-specs">
+              <div>
+                <dt>成立时间</dt>
+                <dd>{brand.founded}</dd>
+              </div>
+              <div>
+                <dt>线路架构</dt>
+                <dd>{brand.lineType}</dd>
+              </div>
+              <div>
+                <dt>传输协议</dt>
+                <dd>{brand.protocols.join(' / ')}</dd>
+              </div>
+              <div>
+                <dt>客户端兼容</dt>
+                <dd>{brand.clientText}</dd>
+              </div>
+              <div>
+                <dt>不限时流量包</dt>
+                <dd>{brand.hasUnlimitedPack ? '支持按量不限时流量包' : '标准周期套餐'}</dd>
+              </div>
+              <div>
+                <dt>覆盖地区</dt>
+                <dd>{brand.regions}</dd>
+              </div>
+            </dl>
+
+            <div class="promo-callout">
+              <div class="promo-info">
+                <span class="promo-label">最新优惠码 / 活动</span>
+                <strong class="promo-code" id="promoCodeText">{brand.promoCode}</strong>
+                <span class="promo-detail">{brand.promoDetail}</span>
+              </div>
+              {brand.promoCode !== '待核实' && brand.promoCode !== '无公开优惠码' && (
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-xs"
+                  id="copyPromoBtn"
+                  data-code={brand.promoCode}
+                >
+                  复制优惠码
+                </button>
+              )}
+            </div>
+
+            <div class="conv-cta-stack">
+              {brand.registerUrl ? (
+                <a
+                  class="btn btn-primary conv-main-btn"
+                  href={brand.registerUrl}
+                  target="_blank"
+                  rel="nofollow sponsored noopener"
+                >
+                  直达 {brand.name} 官网注册 ↗
+                </a>
+              ) : (
+                <a class="btn btn-primary conv-main-btn" href="/brands/guangsuyun">
+                  暂缺独立入口 · 推荐 #1 光速云 →
+                </a>
+              )}
+              <div class="conv-sub-btns">
+                <a class="btn btn-secondary btn-xs" href="#plans-section">查看套餐价格表</a>
+                <a class="btn btn-secondary btn-xs" href="/brands">返回 42 家全库</a>
+              </div>
+            </div>
+
+            {brand.linkNotice && <p class="conv-notice">提示：{brand.linkNotice}</p>}
+            <p class="conv-disclosure">{AFFILIATE_DISCLOSURE}</p>
+          </aside>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 1: Dark Network Observatory (Speedtest + Unlock Matrix + Topology) -->
+      <section class="detail-section" id="observatory-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">01 · Dark Network Observatory</p>
+            <h2 class="h-section h-section--sm">{brand.name} 测速表现、解锁矩阵与链路拓扑</h2>
+          </div>
+          <p class="lede">
+            严格区分单次实测截图（Measured Snapshot）与品牌公开参数（Vendor Data），为您提供可验证的客观参考。
+          </p>
+        </div>
+
+        <div class="obs-grid">
+          <!-- Panel A: Speed Telemetry & Authentic PNG Screenshot -->
+          <div class="obs-panel card elev-sm">
+            <div class="obs-panel-head">
+              <div>
+                <span class="card-kicker">SPEED TELEMETRY & SNAPSHOT</span>
+                <h3 class="obs-panel-title">节点延迟与峰值吞吐记录</h3>
+              </div>
+              <span class="obs-source-badge">{brand.speedDateText}</span>
+            </div>
+
+            <div class="speed-bars">
+              {brand.speeds.map((sp) => {
+                const widthPct = parseMbpsWidth(sp.download);
+                return (
+                  <div class="speed-row">
+                    <div class="speed-row-meta">
+                      <span class="speed-node">{sp.node}</span>
+                      <span class="speed-lat">延迟 {sp.latency}</span>
+                      <strong class="speed-dl">{sp.download}</strong>
+                    </div>
+                    <div class="speed-bar-track">
+                      <div class="speed-bar-fill" style={`width: ${widthPct}%`}></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {brand.measuredPng ? (
+              <div class="png-evidence-block">
+                <div class="png-evidence-header">
+                  <div>
+                    <span class="png-badge">✓ 2026-08-11 真实测速原图归档</span>
+                    <span class="png-meta">
+                      协议：{brand.measuredPng.protocolDisplayed} · 工具：{brand.measuredPng.toolFamily}
+                    </span>
+                  </div>
+                  <a
+                    href={brand.measuredPng.src}
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-ghost btn-xs"
+                  >
+                    查看高清原图 ↗
+                  </a>
+                </div>
+                <figure class="png-frame">
+                  <img
+                    src={brand.measuredPng.src}
+                    alt={`${brand.name} 2026-08-11 真实节点测速拓扑图 (${brand.measuredPng.protocolDisplayed})`}
+                    loading="lazy"
+                  />
+                </figure>
+                <p class="png-note">
+                  <strong>实测图说明：</strong>{brand.measuredPng.note}
+                  （注：单次测速截图仅反映 {brand.measuredPng.testedAt} 测试环境下的节点连通性与峰值吞吐，不代表所有地区宽带在晚高峰的永久速率承诺。）
+                </p>
+              </div>
+            ) : (
+              <div class="png-missing-callout">
+                <p>
+                  <strong>数据口径说明：</strong>当前品牌暂未收录 2026-08-11 批次的独立 PNG 测速截图，上方速率来自品牌资料或历史评测归档（标注为 <code>{brand.speedDataStatus}</code>），建议优先通过月付小额套餐在本地宽带实测。
+                </p>
+              </div>
+            )}
+          </div>
+
+          <!-- Panel B & C Stack: Service Availability Matrix + Network Topology -->
+          <div class="obs-side-stack">
+            <!-- Panel B: Service Availability Matrix -->
+            <div class="obs-panel card elev-sm">
+              <div class="obs-panel-head">
+                <div>
+                  <span class="card-kicker">SERVICE AVAILABILITY MATRIX</span>
+                  <h3 class="obs-panel-title">流媒体与 AI 解锁状态矩阵</h3>
+                </div>
+                <span class="obs-source-badge">Vendor / 实测综合标注</span>
+              </div>
+
+              <div class="unlock-matrix">
+                {brand.unlockSupported.map((item) => (
+                  <div class="unlock-cell is-supported">
+                    <span class="unlock-dot">●</span>
+                    <span class="unlock-name">{item}</span>
+                    <span class="unlock-state">支持解锁</span>
+                  </div>
+                ))}
+                {brand.unlockPartial.map((item) => (
+                  <div class="unlock-cell is-partial">
+                    <span class="unlock-dot">◐</span>
+                    <span class="unlock-name">{item}</span>
+                    <span class="unlock-state">部分/待核实</span>
+                  </div>
+                ))}
+              </div>
+              <p class="obs-footnote">{brand.unlockNote}</p>
+            </div>
+
+            <!-- Panel C: Network Path Observatory -->
+            <div class="obs-panel card elev-sm">
+              <div class="obs-panel-head">
+                <div>
+                  <span class="card-kicker">NETWORK PATH OBSERVATORY</span>
+                  <h3 class="obs-panel-title">传输链路与协议架构图</h3>
+                </div>
+                <span class="obs-source-badge">{brand.lineType}</span>
+              </div>
+
+              <div class="topology-diagram" role="img" aria-label={`${brand.name} 传输链路拓扑图`}>
+                <div class="topo-node">
+                  <span class="topo-step">01 终端分流</span>
+                  <strong>Clash / Shadowrocket</strong>
+                  <small>{brand.clientText}</small>
+                </div>
+                <div class="topo-arrow">→</div>
+                <div class="topo-node is-accent">
+                  <span class="topo-step">02 核心传输层</span>
+                  <strong>{brand.lineType}</strong>
+                  <small>协议：{brand.protocols.join(' / ')}</small>
+                </div>
+                <div class="topo-arrow">→</div>
+                <div class="topo-node">
+                  <span class="topo-step">03 国际落地簇</span>
+                  <strong>{brand.regions}</strong>
+                  <small>流媒体 / AI / 学术访问</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 2: Pricing & Traffic Matrix -->
+      <section class="detail-section" id="plans-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">02 · Pricing & Quota Matrix</p>
+            <h2 class="h-section h-section--sm">{brand.name} 套餐价格与流量配额表</h2>
+          </div>
+          <div class="btn-row">
+            {brand.registerUrl ? (
+              <a
+                class="btn btn-primary"
+                href={brand.registerUrl}
+                target="_blank"
+                rel="nofollow sponsored noopener"
+              >
+                使用优惠码 ({brand.promoCode}) 直达官网 ↗
+              </a>
+            ) : (
+              <a class="btn btn-primary" href="/brands/guangsuyun">
+                查看第一主推光速云套餐 →
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div class="table-scroll card elev-sm">
+          <table class="obs-table">
+            <thead>
+              <tr>
+                <th>套餐档位</th>
+                <th>计费周期</th>
+                <th>官方价格</th>
+                <th>流量配额</th>
+                <th>周期与特点说明</th>
+                <th>操作通道</th>
+              </tr>
+            </thead>
+            <tbody>
+              {brand.plans.map((plan) => (
+                <tr>
+                  <td><strong>{plan.name}</strong></td>
+                  <td><span class="table-badge">{plan.cycle}</span></td>
+                  <td class="table-price">{plan.price}</td>
+                  <td>{plan.traffic}</td>
+                  <td class="table-note">{plan.period}</td>
+                  <td>
+                    {brand.registerUrl ? (
+                      <a
+                        class="btn btn-primary btn-xs"
+                        href={brand.registerUrl}
+                        target="_blank"
+                        rel="nofollow sponsored noopener"
+                      >
+                        选购此档位 ↗
+                      </a>
+                    ) : (
+                      <a class="btn btn-secondary btn-xs" href="/brands/guangsuyun">
+                        替代推荐 →
+                      </a>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="table-disclaimer">
+          注：以上价格为最后核验日期（{brand.verifiedDate}）采集的公开标准价。结账时输入最新优惠码 <code>{brand.promoCode}</code>（{brand.promoDetail}）可享对应折扣。
+        </p>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 3: Pros, Cons & Audience Fit -->
+      <section class="detail-section" id="evaluation-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">03 · Objective Review & Fit</p>
+            <h2 class="h-section h-section--sm">{brand.name} 优缺点剖析与适用人群建议</h2>
+          </div>
+          <p class="lede">拒绝只报喜不报忧，清晰列出核心优势、客观局限与防踩坑建议。</p>
+        </div>
+
+        <div class="quadrant-grid">
+          <article class="quad-card card elev-sm is-pros">
+            <span class="card-kicker">STRENGTHS · 核心优势</span>
+            <h3>为什么推荐选择 {brand.name}</h3>
+            <ul>
+              {brand.pros.map((item) => (
+                <li>✓ {item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="quad-card card elev-sm is-cons">
+            <span class="card-kicker">LIMITATIONS · 客观局限与注意点</span>
+            <h3>选购前需要了解的短板</h3>
+            <ul>
+              {brand.cons.map((item) => (
+                <li>! {item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="quad-card card elev-sm">
+            <span class="card-kicker">IDEAL FOR · 推荐适用人群</span>
+            <h3>最契合的使用场景</h3>
+            <ul>
+              {brand.suitableFor.map((item) => (
+                <li>→ {item}</li>
+              ))}
+            </ul>
+          </article>
+
+          <article class="quad-card card elev-sm">
+            <span class="card-kicker">NOT IDEAL FOR · 不建议选购人群</span>
+            <h3>建议考虑其他替代方案的情况</h3>
+            <ul>
+              {brand.notSuitableFor.map((item) => (
+                <li>× {item}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+
+        <div class="risk-alert card elev-sm">
+          <strong>⚠️ 风险与合规提示：</strong>
+          <p>{brand.riskNote}</p>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 4: Dynamic Brand-Specific Client Compatibility & Protocol Matrix -->
+      <section class="detail-section" id="clients-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">04 · Protocol &amp; Client Compatibility</p>
+            <h2 class="h-section h-section--sm">
+              {brand.clientMode === 'custom-only'
+                ? `${brand.name} 官方专属客户端接入机制与软路由兼容性说明`
+                : `${brand.name} (${protocolSummary}) 客户端内核适配清单`}
+            </h2>
+          </div>
+          <p class="lede">
+            {brand.name} 接入策略：<strong>{brand.clientText}</strong>（底层协议栈：<code>{protocolSummary}</code>）。
+          </p>
+        </div>
+
+        {brand.clientMode === 'custom-only' ? (
+          <div class="client-mode-banner is-custom-only">
+            <h3>⚠️ 选购前必读：{brand.name} 仅提供官方免配置专属客户端（不开放通用 Clash 订阅链接）</h3>
+            <p>
+              与开放明文 YAML 订阅地址的传统机场不同，<strong>{brand.name}</strong> 采用私有加密 API 下发「{brand.lineType}」节点，用户只需在官网后台下载官方 Windows / macOS / Android / iOS 客户端并输入账号密码即可一键连接，彻底免除配置 YAML 规则的门槛。但这也意味着 <strong>{brand.name} 无法导入 Clash Verge Rev、v2rayN 或 OpenWrt 软路由（OpenClash / PassWall2）</strong>。
+            </p>
+            <div class="table-scroll card elev-sm" style="margin-top: 12px;">
+              <table class="obs-table">
+                <thead>
+                  <tr>
+                    <th scope="col">运行终端</th>
+                    <th scope="col">{brand.name} 接入状态</th>
+                    <th scope="col">配置方式与替代方案指引</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Windows / macOS 电脑</strong></td>
+                    <td class="table-price">✓ 官方专属客户端直连</td>
+                    <td>注册 {brand.name}（入门 {brand.entryPriceText}）后，在用户面板下载桌面端登录账号即用。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Android / iOS 移动设备</strong></td>
+                    <td class="table-price">✓ 官方移动端 / 指引安装</td>
+                    <td>安卓直接安装官方 APK；iOS 按官网面板教程配置，无需手动粘贴订阅 URL。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>OpenWrt 软路由 / 透明网关</strong></td>
+                    <td style="color: #fca5a5; font-weight: 600;">× 不支持（无通用订阅）</td>
+                    <td>
+                      软路由、Apple TV 或主机游戏网关用户请改选同时支持通用订阅的
+                      <a href="/brands/guangsuyun">#1 光速云</a> 或 <a href="/brands/weifeng">#3 微风网络</a>。
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div class="client-mode-banner">
+              <h3>
+                {brand.clientMode === 'both'
+                  ? `✓ ${brand.name} 支持「官方一键客户端 + 第三方通用订阅」双模式接入`
+                  : `✓ ${brand.name} 支持标准第三方代理客户端订阅导入（${protocolSummary}）`}
+              </h3>
+              <p>
+                {needsModernCore
+                  ? `由于 ${brand.name} 的「${brand.lineType}」采用了新一代 ${protocolSummary} 传输协议，请务必使用搭载 Mihomo (Clash Meta) 或 sing-box 内核的现代开源客户端；早已停更的原版 Clash for Windows 旧内核无法解析该协议节点。`
+                  : `${brand.name} 采用成熟的 ${protocolSummary} 协议传输「${brand.lineType}」流量，兼容主流 Mihomo (Clash Meta)、sing-box、Xray 及 Surge/Stash 规则引擎。建议优先选用持续维护的开源客户端并开启 Fake-IP 防 DNS 泄露。`}
+              </p>
+            </div>
+
+            <div class="table-scroll card elev-sm">
+              <table class="obs-table">
+                <thead>
+                  <tr>
+                    <th scope="col">操作系统平台</th>
+                    <th scope="col">适配 {brand.name} 首选客户端</th>
+                    <th scope="col">推荐内核要求</th>
+                    <th scope="col">官方开源下载 / 渠道</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Windows / macOS</strong></td>
+                    <td><strong>Clash Verge Rev</strong> / FlClash / v2rayN</td>
+                    <td><code>{needsModernCore ? 'Mihomo v1.18+ (必选)' : 'Mihomo / Xray'}</code></td>
+                    <td>
+                      <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank" rel="noopener noreferrer">
+                        Clash Verge Rev Releases ↗
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>iOS / iPadOS</strong></td>
+                    <td><strong>Shadowrocket (小火箭)</strong> / Stash / sing-box</td>
+                    <td><code>{needsModernCore ? '支持 VLESS/Hy2 最新版' : '标准 Clash/SS 规则引擎'}</code></td>
+                    <td>
+                      <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer">
+                        美区 App Store 官方页 ↗
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Android / 鸿蒙</strong></td>
+                    <td><strong>FlClash</strong> / v2rayNG / sing-box (SFA)</td>
+                    <td><code>{needsModernCore ? 'Mihomo / sing-box 核心' : 'Mihomo / Xray 核心'}</code></td>
+                    <td>
+                      <a href="https://github.com/chen08209/FlClash/releases" target="_blank" rel="noopener noreferrer">
+                        FlClash GitHub 下载 ↗
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>OpenWrt 软路由 / Linux</strong></td>
+                    <td><strong>OpenClash (Meta内核)</strong> / Nikki / PassWall2</td>
+                    <td><code>{needsModernCore ? '务必切换至 Meta 内核' : 'Meta / sing-box 透明网关'}</code></td>
+                    <td>
+                      <a href="https://github.com/vernesong/OpenClash/releases" target="_blank" rel="noopener noreferrer">
+                        OpenClash 官方仓库 ↗
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-disclaimer">
+              需要完整的客户端安装包校验指南、ACL4SSR / MetaCubeX 分流规则集及防 DNS 泄露 YAML 覆写模板，请查阅
+              <a href="/guides/resources">《2026 免费 Clash 开源工具与分流规则库》</a>；若导入 {brand.name} 订阅遇到报错请检索
+              <a href="/guides/faq">《客户端故障排障 FAQ 百科》</a>。
+            </p>
+          </div>
+        )}
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 5: Peer Comparison & Internal Link Matrix -->
+      <section class="detail-section" id="comparison-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">05 · Peer Comparison & Alternatives</p>
+            <h2 class="h-section h-section--sm">{brand.name} 与同梯队机场横向对比</h2>
+          </div>
+          <p class="lede">{brand.comparisonNote}</p>
+        </div>
+
+        <div class="related-grid">
+          {relatedBrands.slice(0, 4).map((rel) => (
+            <article class={`top10-card card elev-sm ${rel.isPrimaryPick ? 'is-primary' : ''}`}>
+              <div class="top10-head">
+                <span class="top10-rank">#{String(rel.rank).padStart(2, '0')} · {rel.badge}</span>
+                {rel.measuredPng && <span class="top10-measured">含实测原图</span>}
+              </div>
+              <h3 class="top10-title">
+                <a href={`/brands/${rel.slug}`}>{rel.name}</a>
+              </h3>
+              <p class="top10-meta">{rel.entryPriceText} · {rel.lineType}</p>
+              <p class="top10-desc">{rel.summary}</p>
+              <div class="top10-actions">
+                {rel.registerUrl && (
+                  <a
+                    class="btn btn-primary btn-xs"
+                    href={rel.registerUrl}
+                    target="_blank"
+                    rel="nofollow sponsored noopener"
+                  >
+                    官网注册 ↗
+                  </a>
+                )}
+                <a class="btn btn-secondary btn-xs" href={`/brands/${rel.slug}`}>
+                  对比评测
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 6: Brand Specific FAQ (Schema.org FAQPage) -->
+      <section class="detail-section" id="faq-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">06 · Frequently Asked Questions</p>
+            <h2 class="h-section h-section--sm">{brand.name} 常见问题解答 (FAQ)</h2>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn-secondary" href="/brands">浏览全部 42 家机场名录 →</a>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          {brand.seo.faqs.map((faq, idx) => (
+            <details class="faq-item card elev-sm" open={idx === 0}>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 7: SEO & GEO Pillar Cross-Link Matrix -->
+      <section class="detail-section">
+        <div class="head-row" style="margin-bottom: 24px;">
+          <div>
+            <p class="kicker">07 · Extended SEO &amp; GEO Knowledge Matrix</p>
+            <h2 class="h-section h-section--sm">延伸阅读：免费开源工具、排障百科与跑路预警雷达</h2>
+          </div>
+        </div>
+        <GuidesNav active="brands" />
+      </section>
+    </main>
+
+    <Footer />
+
+  <script is:inline>
+    (() => {
+      const btn = document.getElementById('copyPromoBtn');
+      if (!btn) return;
+      btn.addEventListener('click', async () => {
+        const code = btn.getAttribute('data-code') || '';
+        try {
+          await navigator.clipboard.writeText(code);
+          const prev = btn.textContent;
+          btn.textContent = '✓ 已复制优惠码';
+          setTimeout(() => {
+            btn.textContent = prev;
+          }, 2000);
+        } catch {
+          // fallback
+        }
+      });
+    })();
+  </script>
+</Layout>

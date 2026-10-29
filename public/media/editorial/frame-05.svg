@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -80 1120 1360" width="960" height="1200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="2026 机场价格梯度与选型指南">
+  <defs>
+    <linearGradient id="lbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1f36"/>
+      <stop offset="100%" stop-color="#121424"/>
+    </linearGradient>
+    <pattern id="lg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ec4899" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-160" y="-160" width="1280" height="1520" fill="url(#lbg)"/>
+  <rect x="-160" y="-160" width="1280" height="1520" fill="url(#lg)"/>
+  <rect x="32" y="32" width="896" height="1136" rx="16" fill="#171a2d" fill-opacity="0.9" stroke="#ec4899" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="68" y="86" fill="#ec4899" font-size="14" font-weight="700">REPORT 05 // PRICING &amp; SELECTION MATRIX</text>
+    <text x="68" y="136" fill="#e9e9ed" font-size="34" font-weight="700" font-family="Inter, system-ui, sans-serif">2026 机场价格梯度与选型指南</text>
+    <text x="68" y="174" fill="#b2b6ca" font-size="16" font-family="Inter, system-ui, sans-serif">从 ¥5.6/月极限平价到 ¥680/月独享原生IP定制，按真实预算与场景精准匹配</text>
+    <line x1="68" y1="204" x2="892" y2="204" stroke="#393e5e" stroke-width="1"/>
+
+    <g transform="translate(68, 228)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">主力综合首选 (¥8~25/月)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">2020老牌 IEPL+内网 / 147永久包</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">光速云 (优惠码 AMM)</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Tier S</text>
+    </g>
+    <g transform="translate(68, 368)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">新手免配首选 (¥7~25/月)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">专属客户端一键登录免导订阅</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">飞猫云 / 无忧链接</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Tier A</text>
+    </g>
+    <g transform="translate(68, 508)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">平价专线首选 (¥8~18/月)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">IEPL + VLESS + 多地区原生IP</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">微风 / 星岛梦 / 极连云</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Tier A</text>
+    </g>
+    <g transform="translate(68, 648)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">多设备与大流量 (¥9~40/月)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">不限设备数 + 不限时流量包</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">暮光加速 / 二猫云 / 一翻云</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Tier A</text>
+    </g>
+    <g transform="translate(68, 788)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">极限平价备用 (¥5.6/月)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">年付约67元 60G/月 适合做备用</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">大佬云 / 闪电鼠 / 云界线</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Tier B</text>
+    </g>
+    <g transform="translate(68, 928)">
+      <rect width="824" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#ec4899"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">历史归档参考 (29~42名)</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">保留历史实测档案，下单前核实</text>
+      <text x="680" y="53" text-anchor="end" fill="#ec4899" font-size="16" font-weight="600">WgetCloud / 青云梯 / 飞鸟等</text>
+      <rect x="700" y="32" width="104" height="32" rx="6" fill="#ec4899" fill-opacity="0.16"/>
+      <text x="752" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Archive</text>
+    </g>
+
+    <text x="68" y="1140" fill="#9397ab" font-size="13">SELECTION RULE: 主力机场建议选运营 &gt;2 年老牌（如光速云），新机场先月付实测勿盲目冲年付</text>
+  </g>
+</svg>

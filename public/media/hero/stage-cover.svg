@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="ClashTuijian.cc Dark Network Observatory Telemetry Console">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1d33"/>
+      <stop offset="55%" stop-color="#141728"/>
+      <stop offset="100%" stop-color="#0f111e"/>
+    </linearGradient>
+    <radialGradient id="hglow" cx="0.72" cy="0.28" r="0.65">
+      <stop offset="0%" stop-color="#9184d9" stop-opacity="0.28"/>
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#161826" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#9184d9" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#hbg)"/>
+  <rect width="1920" height="1080" fill="url(#hglow)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+
+  <!-- Observatory Top Telemetry Bar -->
+  <g transform="translate(110, 96)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" fill="#b2b6ca">
+    <rect width="1700" height="54" rx="8" fill="#1e2136" fill-opacity="0.72" stroke="#3f4259" stroke-width="1"/>
+    <circle cx="28" cy="27" r="5" fill="#10b981"/>
+    <text x="46" y="32" fill="#e9e9ed" font-weight="600">OBSERVATORY // CLASHTUIJIAN.CC</text>
+    <text x="390" y="32" fill="#9397ab">BATCH: 2026-Q4 TELEMETRY</text>
+    <text x="680" y="32" fill="#9397ab">INDEXED PROVIDERS: 42</text>
+    <text x="950" y="32" fill="#9397ab">MEASURED SNAPSHOTS: 17 PNG ARCHIVES</text>
+    <text x="1360" y="32" fill="#b5abfc">TOP PICK: 光速云 (IEPL + VLESS)</text>
+  </g>
+
+  <!-- Network Arcs &amp; Backbone Nodes -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M 420 520 Q 780 240 1160 390" stroke="#b5abfc" stroke-width="2.5" stroke-opacity="0.55" stroke-dasharray="8 6"/>
+    <path d="M 420 520 Q 820 380 1290 480" stroke="#38bdf8" stroke-width="3" stroke-opacity="0.65"/>
+    <path d="M 420 520 Q 760 580 1080 640" stroke="#10b981" stroke-width="2.2" stroke-opacity="0.5"/>
+    <path d="M 1160 390 Q 1390 310 1580 430" stroke="#b5abfc" stroke-width="2" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Node Badges -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13">
+    <g transform="translate(330, 485)">
+      <rect width="190" height="68" rx="8" fill="#1e2238" stroke="#595d7a"/>
+      <circle cx="20" cy="24" r="5" fill="#38bdf8"/>
+      <text x="34" y="28" fill="#e9e9ed" font-weight="600">BGP INGRESS (CN)</text>
+      <text x="20" y="50" fill="#9397ab">GZ / SH / SZ Entry</text>
+    </g>
+    <g transform="translate(1070, 345)">
+      <rect width="230" height="76" rx="8" fill="#1e2238" stroke="#10b981" stroke-opacity="0.7"/>
+      <circle cx="20" cy="24" r="5" fill="#10b981"/>
+      <text x="34" y="28" fill="#e9e9ed" font-weight="600">HKG · IEPL-01</text>
+      <text x="20" y="50" fill="#10b981">RTT 22ms · 529 Mbps</text>
+      <text x="20" y="66" fill="#9397ab" font-size="11">Operational · Native IP</text>
+    </g>
+    <g transform="translate(1220, 445)">
+      <rect width="230" height="76" rx="8" fill="#1e2238" stroke="#38bdf8" stroke-opacity="0.7"/>
+      <circle cx="20" cy="24" r="5" fill="#38bdf8"/>
+      <text x="34" y="28" fill="#e9e9ed" font-weight="600">SGP · IEPL-CORE</text>
+      <text x="20" y="50" fill="#38bdf8">RTT 46ms · 387 Mbps</text>
+      <text x="20" y="66" fill="#9397ab" font-size="11">Operational · AI Ready</text>
+    </g>
+    <g transform="translate(990, 600)">
+      <rect width="230" height="76" rx="8" fill="#1e2238" stroke="#b5abfc" stroke-opacity="0.7"/>
+      <circle cx="20" cy="24" r="5" fill="#b5abfc"/>
+      <text x="34" y="28" fill="#e9e9ed" font-weight="600">TYO · NRT-DIRECT</text>
+      <text x="20" y="50" fill="#d2cefd">RTT 53ms · 150 Mbps</text>
+      <text x="20" y="66" fill="#9397ab" font-size="11">Streaming 4K Verified</text>
+    </g>
+    <g transform="translate(1490, 390)">
+      <rect width="230" height="76" rx="8" fill="#1e2238" stroke="#f59e0b" stroke-opacity="0.6"/>
+      <circle cx="20" cy="24" r="5" fill="#f59e0b"/>
+      <text x="34" y="28" fill="#e9e9ed" font-weight="600">LAX · US-WEST</text>
+      <text x="20" y="50" fill="#fcd34d">RTT 143ms · GPT/Claude</text>
+      <text x="20" y="66" fill="#9397ab" font-size="11">Cross-Pacific Link</text>
+    </g>
+  </g>
+</svg>

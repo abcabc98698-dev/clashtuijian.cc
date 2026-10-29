@@ -1,0 +1,229 @@
+---
+import { site, hero, homeFaqs, siteVerification } from '../config';
+import { topTenBrands } from '../data/brands';
+import { asset, canonicalUrl } from '../utils';
+
+export interface SeoHeadProps {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  canonical?: string;
+  robots?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  cover?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  updatedDate?: string;
+  author?: string;
+  category?: string;
+  tags?: string[];
+  customSchema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  keywords = site.keywords,
+  canonical: customCanonical,
+  robots: customRobots,
+  noindex = false,
+  ogImage: customOgImage,
+  cover,
+  ogImageWidth = site.ogImageWidth,
+  ogImageHeight = site.ogImageHeight,
+  ogType = 'website',
+  publishedTime,
+  modifiedTime,
+  updatedDate,
+  author = site.name,
+  category,
+  tags = [],
+  customSchema,
+} = Astro.props as SeoHeadProps;
+
+const origin = site.url;
+const homeUrl = canonicalUrl('/', origin);
+const canonical = canonicalUrl(customCanonical ?? Astro.url.pathname, origin);
+const isHome = !noindex && canonical === homeUrl;
+
+const resolvedCover = cover ?? customOgImage ?? site.ogImage;
+const ogImageUrl = canonicalUrl(asset(resolvedCover), origin);
+const logoPngUrl = canonicalUrl(asset(site.logoPng), origin);
+const aboutUrl = canonicalUrl('/about', origin);
+
+const robotsDirective =
+  customRobots ??
+  (noindex
+    ? 'noindex, nofollow'
+    : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
+
+const effectiveModifiedTime = modifiedTime ?? updatedDate;
+
+const defaultGraph: Record<string, unknown>[] = [
+  {
+    '@type': 'WebSite',
+    '@id': `${homeUrl}#website`,
+    url: homeUrl,
+    name: site.name,
+    alternateName: 'ClashTuijian.cc 可观测性评测实验室',
+    description: site.description,
+    inLanguage: site.lang,
+    publisher: {
+      '@id': `${homeUrl}#organization`,
+    },
+  },
+  {
+    '@type': 'Organization',
+    '@id': `${homeUrl}#organization`,
+    name: site.name,
+    alternateName: 'ClashTuijian.cc 可观测性评测实验室',
+    url: homeUrl,
+    logo: {
+      '@type': 'ImageObject',
+      '@id': `${homeUrl}#logo`,
+      url: logoPngUrl,
+      contentUrl: logoPngUrl,
+      width: 512,
+      height: 512,
+    },
+    publishingPrinciples: aboutUrl,
+    description: site.description,
+  },
+];
+
+if (!noindex) {
+  defaultGraph.push({
+    '@type': 'WebPage',
+    '@id': `${canonical}#webpage`,
+    url: canonical,
+    name: title,
+    description,
+    isPartOf: {
+      '@id': `${homeUrl}#website`,
+    },
+    about: {
+      '@id': `${homeUrl}#organization`,
+    },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: ogImageUrl,
+      width: ogImageWidth,
+      height: ogImageHeight,
+    },
+    ...(publishedTime ? { datePublished: publishedTime } : {}),
+    ...(effectiveModifiedTime ? { dateModified: effectiveModifiedTime } : {}),
+    inLanguage: site.lang,
+  });
+}
+
+if (isHome) {
+  defaultGraph.push(
+    {
+      '@type': 'ItemList',
+      '@id': `${canonical}#top10-list`,
+      name: '2026 前十名主力 Clash 机场推荐排行榜',
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      numberOfItems: topTenBrands.length,
+      itemListElement: topTenBrands.map((b) => ({
+        '@type': 'ListItem',
+        position: b.rank,
+        name: b.name,
+        description: `${b.badge} — ${b.summary}`,
+        url: canonicalUrl(`/brands/${b.slug}`, origin),
+      })),
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      mainEntity: homeFaqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.a,
+        },
+      })),
+    }
+  );
+}
+
+const rawExtra =
+  !noindex && customSchema
+    ? Array.isArray(customSchema)
+      ? customSchema
+      : [customSchema]
+    : [];
+
+const extraGraph = rawExtra.map((node) => {
+  const { ['@context']: _ignored, ...cleanNode } = node;
+  return cleanNode;
+});
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [...defaultGraph, ...extraGraph],
+};
+---
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')}>}
+<meta name="author" content={author}>
+<meta name="robots" content={robotsDirective}>
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content={site.themeColor}>
+
+{siteVerification.google && <meta name="google-site-verification" content={siteVerification.google}>}
+{siteVerification.bing && <meta name="msvalidate.01" content={siteVerification.bing}>}
+{siteVerification.shenma && <meta name="shenma-site-verification" content={siteVerification.shenma}>}
+{siteVerification.baidu && <meta name="baidu-site-verification" content={siteVerification.baidu}>}
+
+{!noindex && <link rel="canonical" href={canonical}>}
+<link rel="sitemap" type="application/xml" title="Sitemap" href={asset('/sitemap.xml')}>
+<link rel="icon" href={asset(site.favicon)} type="image/svg+xml">
+{isHome && (
+  <link rel="preload" as="image" href={asset(hero.image)} type="image/svg+xml">
+)}
+
+<meta property="og:type" content={ogType}>
+<meta property="og:site_name" content={site.name}>
+<meta property="og:locale" content={site.locale}>
+{!noindex && <meta property="og:url" content={canonical}>}
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:image" content={ogImageUrl}>
+<meta property="og:image:alt" content={title}>
+<meta property="og:image:width" content={String(ogImageWidth)}>
+<meta property="og:image:height" content={String(ogImageHeight)}>
+
+{ogType === 'article' && publishedTime && (
+  <meta property="article:published_time" content={publishedTime}>
+)}
+{ogType === 'article' && effectiveModifiedTime && (
+  <meta property="article:modified_time" content={effectiveModifiedTime}>
+)}
+{ogType === 'article' && author && (
+  <meta property="article:author" content={author}>
+)}
+{ogType === 'article' && category && (
+  <meta property="article:section" content={category}>
+)}
+{ogType === 'article' && tags.map((tag) => (
+  <meta property="article:tag" content={tag}>
+))}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={description}>
+<meta name="twitter:image" content={ogImageUrl}>
+<meta name="twitter:image:alt" content={title}>
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

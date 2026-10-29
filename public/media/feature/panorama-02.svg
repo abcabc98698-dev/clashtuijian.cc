@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="IEPL Backbone Grid">
+  <defs>
+    <linearGradient id="p2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#221c3a"/>
+      <stop offset="55%" stop-color="#16182c"/>
+      <stop offset="100%" stop-color="#101220"/>
+    </linearGradient>
+    <radialGradient id="pg2" cx="0.75" cy="0.4" r="0.55">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#b5abfc" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#101220" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="pgrid2" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#10b981" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#p2)"/>
+  <rect width="1920" height="1080" fill="url(#pg2)"/>
+  <rect width="1920" height="1080" fill="url(#pgrid2)"/>
+
+  <g fill="none" stroke-width="1.8">
+    <circle cx="1360" cy="440" r="190" stroke="#10b981" stroke-opacity="0.28" stroke-dasharray="8 6"/>
+    <circle cx="1360" cy="440" r="320" stroke="#b5abfc" stroke-opacity="0.22"/>
+    <circle cx="1360" cy="440" r="460" stroke="#38bdf8" stroke-opacity="0.18"/>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" opacity="0.8">
+    <g transform="translate(1220, 385)">
+      <rect width="280" height="110" rx="10" fill="#171b30" stroke="#10b981" stroke-opacity="0.6"/>
+      <text x="24" y="36" fill="#6ee7b7" font-weight="700">CORE PICK // 光速云</text>
+      <text x="24" y="64" fill="#e9e9ed">2020 老牌 · IEPL + 内网双线</text>
+      <text x="24" y="90" fill="#b5abfc">¥8.2/月起 · ¥147/247G永久包</text>
+    </g>
+  </g>
+</svg>

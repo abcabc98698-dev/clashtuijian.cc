@@ -1,0 +1,455 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import GuidesNav from '../../components/GuidesNav.astro';
+import {
+  freeComparisonMatrix,
+  ruleRepositories,
+  diagnosticTools,
+  mihomoOverrideYaml,
+  resourceFaqs,
+} from '../../data/guides-resources';
+import { clientPlatforms } from '../../data/clients';
+import { getBrandBySlug, AFFILIATE_DISCLOSURE } from '../../data/brands';
+
+const pageTitle =
+  '2026 免费 Clash 资源库：开源客户端、分流规则、IP检测与WARP | ClashTuijian.cc';
+const pageH1 =
+  '2026 免费 Clash 资源与开源工具大全：客户端、分流规则、IP检测与 WARP 应急方案';
+const pageDesc =
+  '万字级 Clash 免费资源与开源生态库：汇总 Win/Mac/iOS/安卓/软路由客户端官方 GitHub 下载、MetaCubeX/Loyalsoldier/ACL4SSR 分流规则集、Scamalytics/Ping0 IP欺诈值检测工具箱与防泄露 YAML 覆写模板。';
+const canonical = 'https://clashtuijian.cc/guides/resources';
+
+const budgetBrands = [
+  getBrandBySlug('guangsuyun')!,
+  getBrandBySlug('feimaoyun')!,
+  getBrandBySlug('xingdaomeng')!,
+  getBrandBySlug('dalaoyun')!,
+];
+
+const customSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: 'https://clashtuijian.cc/' },
+      { '@type': 'ListItem', position: 2, name: '专题指南中心', item: 'https://clashtuijian.cc/guides' },
+      { '@type': 'ListItem', position: 3, name: '免费资源与开源工具库', item: canonical },
+    ],
+  },
+  {
+    '@type': 'Article',
+    '@id': `${canonical}#article`,
+    headline: pageH1,
+    description: pageDesc,
+    image: ['https://clashtuijian.cc/media/hero/og-cover.png'],
+    datePublished: '2026-10-29',
+    dateModified: '2026-10-29',
+    author: { '@id': 'https://clashtuijian.cc/#organization' },
+    publisher: { '@id': 'https://clashtuijian.cc/#organization' },
+    mainEntityOfPage: { '@id': `${canonical}#webpage` },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    mainEntity: resourceFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  ogType="article"
+  publishedTime="2026-10-29"
+  updatedDate="2026-10-29"
+  category="免费资源与开源工具"
+  tags={['Clash开源客户端', 'Mihomo分流规则', 'IP纯净度检测', 'Cloudflare WARP']}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.35;"
+  customSchema={customSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="/">首页 (推荐 Clash)</a>
+        <span>/</span>
+        <a href="/guides">专题指南中心</a>
+        <span>/</span>
+        <span aria-current="page">免费资源与开源工具生态库</span>
+      </nav>
+
+      <GuidesNav active="resources" />
+
+      <!-- Hero & GEO Summary -->
+      <section class="detail-hero">
+        <div class="detail-badges">
+          <span class="badge-rank">PILLAR 01</span>
+          <span class="badge-tier is-top">100% 真实开源工具与规则库</span>
+          <span class="badge-status status-measured-plus-vendor">✓ 已核验官方 GitHub 仓库</span>
+          <span class="badge-date">更新日期：2026-10-29</span>
+        </div>
+
+        <h1 class="detail-h1">2026 免费 Clash 资源与开源工具大全：客户端、分流规则、IP检测与 WARP 应急方案</h1>
+
+        <div class="geo-tldr-box elev-sm">
+          <div class="geo-tldr-head">
+            <span class="geo-tag">GEO 速览结论 · 免费资源避坑准则</span>
+            <span class="geo-kw">核心词：免费 Clash 资源 / 开源代理客户端 / 分流规则集</span>
+          </div>
+          <p class="geo-summary">
+            真正值得长期收藏的「免费资源」是 <strong>GitHub 官方开源代理客户端（Clash Verge Rev / FlClash / v2rayN / OpenClash）</strong>、<strong>高精开源分流规则库（MetaCubeX / Loyalsoldier / ACL4SSR / blackmatrix7）</strong>、<strong>全球 IP 纯净度与 DNS 泄露检测工具（Scamalytics / Ping0 / Fast.com）</strong> 以及 <strong>Cloudflare WARP 官方免费加密隧道</strong>。
+          </p>
+          <p class="geo-desc">
+            安全警示：切勿使用搜索引擎竞价广告中的“破解版客户端”或抓取型“免费公开节点池”登录网银、邮箱与 ChatGPT 账号。若预算有限，建议用 Cloudflare WARP 应急，或选择年付仅 ¥67（¥5.6/月）的平价机场及光速云 ¥147/247GB 永久不限时流量包。
+          </p>
+          <div class="highlight-pills" style="margin-top: 8px;">
+            <a class="highlight-pill" href="#sec-matrix" style="text-decoration: none;">01 免费与低成本方案对比</a>
+            <a class="highlight-pill" href="#sec-clients" style="text-decoration: none;">02 全平台开源客户端下载</a>
+            <a class="highlight-pill" href="#sec-rules" style="text-decoration: none;">03 四大开源分流规则集</a>
+            <a class="highlight-pill" href="#sec-yaml" style="text-decoration: none;">04 防泄露 YAML 覆写模板</a>
+            <a class="highlight-pill" href="#sec-tools" style="text-decoration: none;">05 IP纯净度与测速工具箱</a>
+            <a class="highlight-pill" href="#sec-warp" style="text-decoration: none;">06 Cloudflare WARP 教程</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 01: Free vs Low-Cost Comparison Matrix -->
+      <section class="detail-section" id="sec-matrix">
+        <div class="head-row">
+          <div>
+            <p class="kicker">01 · Free vs Paid Cost-Benefit Analysis</p>
+            <h2 class="h-section h-section--sm">6 大主流科学上网方案：免费、自建与专线机场全景对比</h2>
+          </div>
+          <p class="lede">客观评估时间成本、晚高峰吞吐、数据安全性与 AI 解锁能力。</p>
+        </div>
+
+        <div class="table-scroll card elev-sm">
+          <table class="obs-table">
+            <thead>
+              <tr>
+                <th>方案类型</th>
+                <th>综合资金成本</th>
+                <th>晚高峰速率与稳定性</th>
+                <th>隐私与安全等级</th>
+                <th>AI 与 4K 流媒体解锁</th>
+                <th>适用人群与实验室建议</th>
+              </tr>
+            </thead>
+            <tbody>
+              {freeComparisonMatrix.map((row) => (
+                <tr>
+                  <td><strong>{row.method}</strong></td>
+                  <td class="table-price">{row.cost}</td>
+                  <td>{row.speedPeak}</td>
+                  <td>{row.securityLevel}</td>
+                  <td class="table-note">{row.aiStreamingUnlock}</td>
+                  <td>
+                    <span class="table-badge">{row.recommendation}</span>
+                    <div style="margin-top: 4px; font-size: 12px; color: var(--color-neutral-400);">
+                      {row.bestFor}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 02: Full Open-Source Client Download Directory -->
+      <section class="detail-section" id="sec-clients">
+        <div class="head-row">
+          <div>
+            <p class="kicker">02 · Verified Open-Source Client Releases</p>
+            <h2 class="h-section h-section--sm">2026 全平台开源代理客户端官方仓库直达下载</h2>
+          </div>
+          <p class="lede">
+            所有下载按钮均直接指向 GitHub 官方 Releases 或 Apple App Store，杜绝第三方套壳篡改。
+          </p>
+        </div>
+
+        <div class="client-platform-grid">
+          {clientPlatforms.map((plat) => (
+            <article class="client-platform-card">
+              <div class="client-platform-top">
+                <h4>{plat.platform}</h4>
+                <span class="client-platform-badge">{plat.badge}</span>
+              </div>
+              <p class="client-platform-notice">{plat.notice}</p>
+              <ul class="client-list">
+                {plat.clients.map((c) => (
+                  <li class:list={['client-item', { 'is-rec': c.recommended }]}>
+                    <div class="client-item-head">
+                      <a
+                        class="client-item-name"
+                        href={c.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <strong>{c.name}</strong>
+                      </a>
+                      {c.recommended && <span class="rec-pill">主力推荐</span>}
+                      <span class="core-pill">{c.core}</span>
+                      <a
+                        class="client-dl-btn"
+                        href={c.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {c.downloadLabel}
+                      </a>
+                    </div>
+                    <p>{c.features}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 03: Open-Source Rule Repositories -->
+      <section class="detail-section" id="sec-rules">
+        <div class="head-row">
+          <div>
+            <p class="kicker">03 · Open-Source Rule Providers &amp; Geo Databases</p>
+            <h2 class="h-section h-section--sm">四大权威开源分流规则集与 GeoIP/GeoSite 数据库</h2>
+          </div>
+          <p class="lede">
+            实现“国内网站 100% 毫秒级直连、广告域名自动拦截、OpenAI/Netflix 精准走指定地区节点”的核心开源项目。
+          </p>
+        </div>
+
+        <div class="quadrant-grid">
+          {ruleRepositories.map((repo) => (
+            <article class="quad-card card elev-sm">
+              <div class="top10-head">
+                <span class="card-kicker">MAINTAINER: {repo.maintainer}</span>
+                <a
+                  class="client-dl-btn"
+                  href={repo.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub 仓库 ↗
+                </a>
+              </div>
+              <h3>{repo.name}</h3>
+              <p style="font-size: 13px; color: var(--color-neutral-300);">{repo.description}</p>
+              <div style="font-size: 12px; color: var(--color-accent-300);">
+                兼容内核：{repo.coreSupport}
+              </div>
+              <ul>
+                {repo.keyFragments.map((frag) => (
+                  <li>✦ {frag}</li>
+                ))}
+              </ul>
+              <div class="code-line-box">
+                <span>CDN 示例：</span>
+                <code>{repo.cdnExample}</code>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 04: Copyable Mihomo Override YAML Template -->
+      <section class="detail-section" id="sec-yaml">
+        <div class="head-row">
+          <div>
+            <p class="kicker">04 · Ready-to-Use Mihomo Override Template</p>
+            <h2 class="h-section h-section--sm">一键复制：Mihomo (Clash Verge Rev) 防 DNS 泄露与 AI 分流覆写配置</h2>
+          </div>
+          <button type="button" class="btn btn-primary" id="copyYamlBtn">
+            复制完整 YAML 覆写代码
+          </button>
+        </div>
+
+        <div class="yaml-Showcase card elev-sm">
+          <p style="font-size: 13.5px; color: var(--color-neutral-300); margin-bottom: 12px;">
+            <strong>配置说明：</strong>将以下 YAML 代码粘贴至 Clash Verge Rev 的「订阅 (Profiles) → 全局扩展覆写配置 (Global Extend Config)」中，即可在不修改机场原始订阅的前提下，自动启用 <code>fake-ip</code> 防污染 DNS、TLS 域名嗅探（Sniffer）以及 OpenAI / Claude / Gemini / Netflix / 大陆直连规则。
+          </p>
+          <pre class="code-block" id="yamlCodeBlock"><code>{mihomoOverrideYaml}</code></pre>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 05: Network Observability & IP Purity Toolbox -->
+      <section class="detail-section" id="sec-tools">
+        <div class="head-row">
+          <div>
+            <p class="kicker">05 · IP Purity, Leak &amp; Speedtest Toolbox</p>
+            <h2 class="h-section h-section--sm">全球 IP 纯净度（欺诈值）、原生 IP 鉴别与 DNS 泄露检测工具箱</h2>
+          </div>
+          <p class="lede">
+            连接机场节点后，点击下方任意在线检测工具即可实时验明当前节点的原生属性、风控风险分与真实流媒体带宽。
+          </p>
+        </div>
+
+        <div class="quadrant-grid">
+          {diagnosticTools.map((tool) => (
+            <article class="quad-card card elev-sm">
+              <div class="top10-head">
+                <span class="card-kicker">{tool.category}</span>
+                <a
+                  class="client-dl-btn"
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打开检测工具 ↗
+                </a>
+              </div>
+              <h3>{tool.name}</h3>
+              <p style="font-size: 12.5px; color: #6ee7b7; font-weight: 500;">
+                核心指标：{tool.metrics}
+              </p>
+              <p style="font-size: 13.5px; color: var(--color-neutral-300); line-height: 1.55;">
+                {tool.howToRead}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 06: Cloudflare WARP & Budget Alternatives -->
+      <section class="detail-section" id="sec-warp">
+        <div class="head-row">
+          <div>
+            <p class="kicker">06 · Zero-Cost WARP &amp; High-Value Alternatives</p>
+            <h2 class="h-section h-section--sm">Cloudflare WARP 免费方案实操与高性价比专线平替</h2>
+          </div>
+          <p class="lede">
+            既提供零成本的技术折腾路径，也提供每天仅需 2 毛钱的省心专线方案。
+          </p>
+        </div>
+
+        <div class="quadrant-grid">
+          <article class="quad-card card elev-sm is-pros">
+            <span class="card-kicker">FREE METHOD A · CLOUDFLARE 1.1.1.1 / WARP</span>
+            <h3>如何使用 Cloudflare WARP 实现免费加密与 AI 解锁</h3>
+            <ul>
+              <li>
+                ✓ <strong>原理优势</strong>：Cloudflare 在全球拥有数百个边缘数据中心，其 WARP 服务基于 WireGuard 协议分配高纯净度的 Cloudflare Anycast IP，访问 ChatGPT、Claude 和 Google 极少弹验证码。
+              </li>
+              <li>
+                ✓ <strong>优选 Endpoint IP 技巧</strong>：由于默认 WARP 入口在国内部分地区宽带直连丢包较高，可使用开源的 Cloudflare WARP Endpoint 优选工具筛选本地延迟低于 80ms 的可用 IP 段填入 WireGuard 客户端。
+              </li>
+              <li>
+                ✓ <strong>Mihomo 链式代理（进阶）</strong>：在 Clash Verge Rev 中将提取出的 WARP WireGuard 节点配置添加上 `dialer-proxy: 香港IEPL节点`，即可用机场专线做高速前置中转、用免费 WARP 做超纯净落地 IP！
+              </li>
+            </ul>
+          </article>
+
+          <article class="quad-card card elev-sm is-cons">
+            <span class="card-kicker">SECURITY AUDIT · 为什么远离抓取型免费节点池</span>
+            <h3>公开免费订阅池的四大安全与体验死穴</h3>
+            <ul>
+              <li>
+                ! <strong>中间人流量嗅探风险</strong>：搭建节点需要真金白银租用服务器，无偿向全网广播的匿名节点极可能记录明文 HTTP 请求、DNS 查询记录甚至注入恶意 JS 脚本。
+              </li>
+              <li>
+                ! <strong>万人拥挤与账号连坐封禁</strong>：同一免费 IP 往往有数千人同时发起爬虫与垃圾请求，一旦您用该 IP 登录自己的 OpenAI、苹果 ID 或 PayPal，极易触发关联风控直接封号。
+              </li>
+              <li>
+                ! <strong>时间成本远高于几元月租</strong>：每天花费半小时寻找可用免费订阅、导入测试、断流重连，不如用一瓶饮料的价格获得整月满速稳定的 IEPL 专线。
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="top10-grid" style="margin-top: 4vh;">
+          {budgetBrands.map((b) => (
+            <article class={`top10-card card elev-sm ${b.isPrimaryPick ? 'is-primary' : ''}`}>
+              <div class="top10-head">
+                <span class="top10-rank">#{String(b.rank).padStart(2, '0')} · {b.badge}</span>
+                <span class="top10-measured">{b.entryPriceText}</span>
+              </div>
+              <h3 class="top10-title">
+                <a href={`/brands/${b.slug}`}>{b.name}</a>
+              </h3>
+              <p class="top10-line">{b.lineType} · 优惠码 {b.promoCode}</p>
+              <p class="top10-desc">{b.summary}</p>
+              <div class="top10-actions">
+                <a
+                  class="btn btn-primary btn-xs"
+                  href={b.registerUrl}
+                  target="_blank"
+                  rel="nofollow sponsored noopener"
+                >
+                  直达官网注册 ↗
+                </a>
+                <a class="btn btn-secondary btn-xs" href={`/brands/${b.slug}`}>
+                  查看套餐与实测
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="disclosure-note" style="margin-top: 18px;">{AFFILIATE_DISCLOSURE}</p>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 07: Resource FAQs -->
+      <section class="detail-section" id="sec-faq">
+        <div class="head-row">
+          <div>
+            <p class="kicker">07 · Free Resources &amp; Security FAQ</p>
+            <h2 class="h-section h-section--sm">免费资源、订阅转换与开源工具常见问题解答</h2>
+          </div>
+          <a class="btn btn-secondary" href="/guides/faq">进入万字排障百科全书 →</a>
+        </div>
+
+        <div class="faq-grid">
+          {resourceFaqs.map((faq, idx) => (
+            <details class="faq-item card elev-sm" open={idx < 2}>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+
+  <script is:inline>
+    (() => {
+      const btn = document.getElementById('copyYamlBtn');
+      const codeEl = document.getElementById('yamlCodeBlock');
+      if (!btn || !codeEl) return;
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(codeEl.textContent || '');
+          const prev = btn.textContent;
+          btn.textContent = '✓ 已复制 YAML 覆写配置';
+          setTimeout(() => {
+            btn.textContent = prev;
+          }, 2200);
+        } catch {
+          // ignore
+        }
+      });
+    })();
+  </script>
+</Layout>

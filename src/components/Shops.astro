@@ -1,0 +1,79 @@
+---
+import { flagships, homeFaqs } from '../config';
+import { AFFILIATE_DISCLOSURE } from '../data/brands';
+import { asset } from '../utils';
+import GuidesNav from './GuidesNav.astro';
+const n = flagships.items.length;
+---
+<section id={flagships.id} class="flagships" data-scene="view" aria-labelledby="flagships-heading">
+  <div class="wrap">
+    <div class="kicker">{flagships.kicker}</div>
+    <h2 id="flagships-heading" class="h-section rv" data-w="0 0.4">{flagships.title}</h2>
+    <div class="rule" aria-hidden="true"></div>
+    <div class="flagship-grid">
+      {flagships.items.map((s, i) => (
+        <article id={s.id} class="flagship-card rv" data-w="0.15 0.4 0.08" data-i={i}>
+          <div class="flagship-index">{s.badge}</div>
+          <h3>{s.name}</h3>
+          <ul class="flagship-specs">
+            {s.specs.map((line) => <li>{line}</li>)}
+          </ul>
+          <p class="flagship-promo">{s.promoText}</p>
+          <div class="btn-row">
+            <a
+              class="btn btn-primary"
+              href={s.primaryUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener"
+            >
+              {s.primaryLabel}
+            </a>
+            <a
+              class="btn btn-secondary"
+              href={s.secondaryUrl}
+              target={s.secondaryUrl.startsWith('http') ? '_blank' : undefined}
+              rel={s.secondaryUrl.startsWith('http') ? 'nofollow sponsored noopener' : undefined}
+            >
+              {s.secondaryLabel}
+            </a>
+          </div>
+        </article>
+      ))}
+      <div class="rv" data-w="0.15 0.4 0.08" data-i={n}>
+        <figure class="flagship-evidence">
+          <div>
+            <img
+              src={asset(flagships.photo.src)}
+              alt={flagships.photo.alt}
+              width={flagships.photo.width}
+              height={flagships.photo.height}
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption class="caption">{flagships.photo.caption}</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="home-faq-section" id="faq">
+      <div class="kicker">GEO Structured Q&amp;A</div>
+      <h3 class="home-faq-title">Clash 机场选型与客户端常见问题解答</h3>
+      <div class="home-faq-grid">
+        {homeFaqs.map((item) => (
+          <details class="faq-item" open>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="disclosure-note" style="margin-top: 24px; margin-bottom: 36px;">
+        {AFFILIATE_DISCLOSURE} 测速数据分类说明：标注 Measured 的截图代表 2026-08-11 当次测试环境记录，标注 Vendor 的价格与参数源自品牌方公开资料。详见 <a href="/about">评测方法论与免责声明</a>。
+      </p>
+
+      <div class="kicker">SEO &amp; GEO Pillar Knowledge Matrix</div>
+      <h3 class="home-faq-title" style="margin-bottom: 16px;">探索万字级专题指南：免费资源库、百科排障与跑路预警雷达</h3>
+      <GuidesNav active="hub" />
+    </div>
+  </div>
+</section>

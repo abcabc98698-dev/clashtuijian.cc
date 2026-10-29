@@ -1,0 +1,245 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import GuidesNav from '../../components/GuidesNav.astro';
+import { topTenBrands, AFFILIATE_DISCLOSURE } from '../../data/brands';
+import { faqCategories } from '../../data/guides-faq';
+import { warningSignals } from '../../data/guides-warnings';
+
+const pageTitle =
+  '2026 Clash 专题指南中心：免费资源库、排障百科与跑路预警雷达 | ClashTuijian.cc';
+const pageDesc =
+  'ClashTuijian.cc 深度 SEO/GEO 专题知识矩阵：聚合「免费资源与开源客户端/分流规则库」、「Clash 机场百科与客户端报错排障中心」及「2026 机场跑路预警与 42 家品牌风险分层雷达」，助您零门槛构建稳定、高速、永不断联的专线网络。';
+const canonical = 'https://clashtuijian.cc/guides';
+
+const hubSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: 'https://clashtuijian.cc/' },
+      { '@type': 'ListItem', position: 2, name: '专题指南中心', item: canonical },
+    ],
+  },
+  {
+    '@type': 'CollectionPage',
+    '@id': `${canonical}#collection`,
+    name: pageTitle,
+    description: pageDesc,
+    url: canonical,
+    hasPart: [
+      {
+        '@type': 'WebPage',
+        name: '免费资源与开源工具生态库',
+        url: 'https://clashtuijian.cc/guides/resources',
+      },
+      {
+        '@type': 'WebPage',
+        name: 'Clash 机场百科与故障排障 FAQ 知识库',
+        url: 'https://clashtuijian.cc/guides/faq',
+      },
+      {
+        '@type': 'WebPage',
+        name: '2026 机场跑路预警与 42 家品牌风险评级中心',
+        url: 'https://clashtuijian.cc/guides/warnings',
+      },
+      {
+        '@type': 'AboutPage',
+        name: '关于实验室、2026 评测方法论与免责合规声明',
+        url: 'https://clashtuijian.cc/about',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.2;"
+  customSchema={hubSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="/">首页 (推荐 Clash)</a>
+        <span>/</span>
+        <span aria-current="page">SEO/GEO 专题指南矩阵</span>
+      </nav>
+
+      <GuidesNav active="hub" />
+
+      <section class="detail-hero">
+        <div class="kicker">Dark Network Observatory // Pillar Knowledge Hub</div>
+        <h1 class="h-section">2026 Clash 专线网络专题导航与知识矩阵</h1>
+        <p class="lede dir-lede">
+          从<strong>全平台开源客户端与分流规则集下载</strong>、<strong>客户端报错与 AI/流媒体解锁排障百科</strong>，到<strong>机场跑路高危预警信号与 42 家品牌风险分层评级</strong>——本专题中心将实验室多年的实测经验浓缩为三大万字级深度工程手册。
+        </p>
+
+        <!-- Three Major Pillar Cards -->
+        <div class="pillar-hero-cards">
+          <article class="pillar-feature-card card elev-md" style="--brand-accent: #38bdf8">
+            <div class="pillar-card-top">
+              <span class="card-kicker">PILLAR 01 · FREE &amp; OPEN-SOURCE</span>
+              <span class="pillar-word-count">12,000+ 字实操干货</span>
+            </div>
+            <h2>
+              <a href="/guides/resources">免费资源与开源工具生态库</a>
+            </h2>
+            <p class="pillar-card-desc">
+              汇集 2026 最新开源代理客户端官方仓库（Clash Verge Rev / FlClash / v2rayN / OpenClash）、四大权威分流规则集（MetaCubeX / Loyalsoldier / ACL4SSR / blackmatrix7）、IP 纯净度与欺诈值检测工具箱、Cloudflare WARP 零成本应急方案，以及可直接复制的 Mihomo 防泄露覆写 YAML 模板。
+            </p>
+            <ul class="pillar-bullet-list">
+              <li>✓ 6 大主流免费/低成本科学上网方案优劣与安全性对比表</li>
+              <li>✓ 8 款全球 IP 欺诈值（Scamalytics）、原生 IP（Ping0）与 DNS 泄露检测工具</li>
+              <li>✓ 一键复制标准 Mihomo (Clash Verge Rev) Fake-IP 防污染与 AI 分流覆写配置</li>
+            </ul>
+            <div class="pillar-card-foot">
+              <a class="btn btn-primary" href="/guides/resources">进入免费资源与工具库 →</a>
+            </div>
+          </article>
+
+          <article class="pillar-feature-card card elev-md" style="--brand-accent: #b5abfc">
+            <div class="pillar-card-top">
+              <span class="card-kicker">PILLAR 02 · WIKI &amp; TROUBLESHOOTING</span>
+              <span class="pillar-word-count">6 大分类 · 深度排障百科</span>
+            </div>
+            <h2>
+              <a href="/guides/faq">Clash 机场百科与故障排查 FAQ 知识库</a>
+            </h2>
+            <p class="pillar-card-desc">
+              按「专线架构与协议」、「客户端报错修复」、「AI 与 4K 流媒体解锁」、「OpenWrt 软路由网关」、「套餐流量精算」与「科学测速方法论」6 大模块构建的交互式检索百科，解决从入门订阅导入到高阶分流的所有疑难杂症。
+            </p>
+            <ul class="pillar-bullet-list">
+              <li>✓ IEPL / IPLC 物理内网专线 vs BGP 中转 vs 公网直连底层差异全解</li>
+              <li>✓ 订阅拉取 Network Error、开启代理后国内断网、macOS“已损坏”一键修复命令</li>
+              <li>✓ ChatGPT 报错 Access Denied、Claude 防封号与 Netflix 非自制剧解锁指南</li>
+            </ul>
+            <div class="pillar-card-foot">
+              <a class="btn btn-primary" href="/guides/faq">进入万字排障百科 FAQ →</a>
+            </div>
+          </article>
+
+          <article class="pillar-feature-card card elev-md" style="--brand-accent: #10b981">
+            <div class="pillar-card-top">
+              <span class="card-kicker">PILLAR 03 · RISK RADAR &amp; ANTI-SCAM</span>
+              <span class="pillar-word-count">6 大信号 · 42家风险分层</span>
+            </div>
+            <h2>
+              <a href="/guides/warnings">机场跑路预警、风险分层与防失联雷达</a>
+            </h2>
+            <p class="pillar-card-desc">
+              基于通信带宽经济学与实验室长期监测，深度拆解中小机场跑路前的 6 大高危预警信号（如违背硬件成本的三年付骨折倾销、IEPL 静默降级公网等），并对站内收录的 42 家机场进行客观的 Tier S / A / B / C 风险与透明度分层。
+            </p>
+            <ul class="pillar-bullet-list">
+              <li>✓ 跑路前兆识别：为什么“39元终身无限流量”与“三年付1折”必是收割盘？</li>
+              <li>✓ 42 家收录品牌完整分层：Tier S (2020老牌) 至 Tier C (历史归档观察池)</li>
+              <li>✓ 「主力 IEPL 专线 + 永久不限时流量包热备」365天零断联双保险方案</li>
+            </ul>
+            <div class="pillar-card-foot">
+              <a class="btn btn-primary" href="/guides/warnings">进入跑路预警与避坑雷达 →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Quick Indexing Matrix for SEO/GEO Crawlers & Users -->
+      <section class="detail-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">01 · Rapid Topic Jump Matrix</p>
+            <h2 class="h-section h-section--sm">高频问题与工具快速检索索引</h2>
+          </div>
+          <p class="lede">点击任一技术主题，直接定位至对应专题章节与解决方案。</p>
+        </div>
+
+        <div class="quadrant-grid">
+          {faqCategories.map((cat) => (
+            <article class="quad-card card elev-sm">
+              <span class="card-kicker">{cat.badge}</span>
+              <h3>
+                <a href={`/guides/faq#${cat.id}`} style="color: inherit; text-decoration: none;">
+                  {cat.title}
+                </a>
+              </h3>
+              <ul>
+                {cat.items.slice(0, 3).map((item) => (
+                  <li>
+                    <a href={`/guides/faq#${item.id}`}>→ {item.q}</a>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Risk Signals Preview & Top 5 Safe Picks -->
+      <section class="detail-section">
+        <div class="head-row">
+          <div>
+            <p class="kicker">02 · Anti-Scam &amp; Safe Picks</p>
+            <h2 class="h-section h-section--sm">六大跑路高危信号速览与 Tier S/A 稳健推荐</h2>
+          </div>
+          <a class="btn btn-secondary" href="/guides/warnings">查看完整 42 家风险分层表 →</a>
+        </div>
+
+        <div class="signal-preview-grid">
+          {warningSignals.map((sig) => (
+            <div class="signal-mini-card card elev-sm">
+              <div class="signal-mini-head">
+                <span class="signal-code">{sig.code}</span>
+                <span class={`signal-sev sev-${sig.severity.toLowerCase()}`}>{sig.severity}</span>
+              </div>
+              <h4>
+                <a href={`/guides/warnings#${sig.code}`} style="color: inherit; text-decoration: none;">
+                  {sig.title}
+                </a>
+              </h4>
+              <p>{sig.symptom}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="top10-grid" style="margin-top: 4vh;">
+          {topTenBrands.slice(0, 5).map((b) => (
+            <article class={`top10-card card elev-sm ${b.isPrimaryPick ? 'is-primary' : ''}`}>
+              <div class="top10-head">
+                <span class="top10-rank">#{String(b.rank).padStart(2, '0')} · {b.badge}</span>
+                <span class="top10-measured">稳健优选</span>
+              </div>
+              <h3 class="top10-title">
+                <a href={`/brands/${b.slug}`}>{b.name}</a>
+              </h3>
+              <p class="top10-line">{b.entryPriceText} · {b.lineType}</p>
+              <p class="top10-desc">{b.summary}</p>
+              <div class="top10-actions">
+                <a
+                  class="btn btn-primary btn-xs"
+                  href={b.registerUrl}
+                  target="_blank"
+                  rel="nofollow sponsored noopener"
+                >
+                  官网注册 ↗
+                </a>
+                <a class="btn btn-secondary btn-xs" href={`/brands/${b.slug}`}>
+                  评测详情
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="disclosure-note" style="margin-top: 20px;">{AFFILIATE_DISCLOSURE}</p>
+      </section>
+    </main>
+
+    <Footer />
+</Layout>

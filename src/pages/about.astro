@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import GuidesNav from '../components/GuidesNav.astro';
+import { brands, AFFILIATE_DISCLOSURE } from '../data/brands';
+
+const pageTitle = '关于实验室、2026 专线机场评测方法论与免责声明 | ClashTuijian.cc';
+const pageDesc =
+  'ClashTuijian.cc 网络可观测性评测实验室公开档案：详解 2026 专线节点测速硬件拓扑与快照边界、三类数据溯源口径（Measured/Vendor/Historical）、商业推广独立性披露及合规免责声明。';
+const canonical = 'https://clashtuijian.cc/about';
+
+const measuredCount = brands.filter((b) => Boolean(b.measuredPng)).length;
+const vendorCount = brands.filter((b) => b.dataStatus === 'vendor').length;
+const historicalCount = brands.filter((b) => b.dataStatus === 'historical').length;
+
+const aboutFaqs = [
+  {
+    q: 'ClashTuijian.cc 的测速截图与数据是如何采集的？代表全天候承诺速度吗？',
+    a: '本站收录的 17 份实测原图（/media/speedtests/*-20260811.png）基于统一自动化测速环境（如珠海联通 5Gbps/9Gbps 多线程并发拓扑）在标注时间戳（2026-08-11 CST）采集。任何单次网络测速仅代表当次采样时刻与特定运营商出口的客观快照，受跨省运营商 QoS、海缆波动及晚高峰并发影响，不构成对所有地区宽带长期速率的承诺。我们坚持建议读者先以月付或小流量包验证本地晚高峰表现。',
+  },
+  {
+    q: '商业推广链接（Affiliate）会影响本站的排名与风险预警评级吗？',
+    a: '不会。本站对所有站外机场注册链接 100% 标注 rel="nofollow sponsored noopener" 并在显著位置公示推广披露声明。一个品牌能否进入前十主力榜单，取决于其持续运营年限（如 2020 年运营至今的光速云、星岛梦）、IEPL/IPLC 专线硬件架构、客户端兼容性以及当期实测可验证度；对于缺乏近 30 日实测或入口变动的老旧记录，我们一律归入历史归档观察区并提示长周期付费风险。',
+  },
+  {
+    q: '为什么部分品牌页面标记为「官方核验参数」或「历史归档样本」？',
+    a: '为杜绝编造虚假测速数据或伪造星级评分，本站严格实行三级数据溯源隔离制度：同时具备 2026-08-11 原始测速 PNG 与当期套餐核验的品牌标记为 Measured + Vendor（共 17 家）；具备 2026-10 公开套餐参数但未纳入同批次测速截图的品牌标记为 Vendor（共 11 家）；早期收录但缺乏当期独立复测的品牌标记为 Historical Archive（共 14 家），所有未核实字段均如实标注「待核实」。',
+  },
+  {
+    q: '使用本站评测信息与开源客户端教程有哪些法律与合规边界？',
+    a: 'ClashTuijian.cc 仅面向跨境外贸办公、国际学术文献检索、海外软件工程协作及流媒体网络架构研究提供客观技术参数汇编与开源软件使用科普。请读者严格遵守所在国家与地区的互联网法律法规，切勿将任何网络代理工具用于违法违规用途。',
+  },
+];
+
+const customSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页 (推荐 Clash)', item: 'https://clashtuijian.cc/' },
+      { '@type': 'ListItem', position: 2, name: '评测方法论与免责声明', item: canonical },
+    ],
+  },
+  {
+    '@type': 'AboutPage',
+    '@id': `${canonical}#about`,
+    url: canonical,
+    name: pageTitle,
+    description: pageDesc,
+    mainEntity: {
+      '@id': 'https://clashtuijian.cc/#organization',
+    },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    mainEntity: aboutFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.25;"
+  customSchema={customSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+    <nav class="breadcrumb" aria-label="面包屑导航">
+      <a href="/">首页 (推荐 Clash)</a>
+      <span>/</span>
+      <span aria-current="page">关于实验室、评测方法论与免责声明</span>
+    </nav>
+
+    <GuidesNav active="about" />
+
+    <section class="detail-hero">
+      <div class="detail-badges">
+        <span class="badge-rank">E-E-A-T TRUST</span>
+        <span class="badge-tier is-top">公开透明评测准则 · 零虚假星级评分</span>
+        <span class="badge-status status-measured-plus-vendor">✓ 三级数据溯源隔离</span>
+        <span class="badge-date">修订日期：2026-10-29</span>
+      </div>
+
+      <h1 class="detail-h1">关于 ClashTuijian.cc 可观测性实验室：评测方法论、数据溯源与合规免责声明</h1>
+
+      <div class="geo-tldr-box elev-sm">
+        <div class="geo-tldr-head">
+          <span class="geo-tag">GEO 信任背书摘要 · 实验室核心原则</span>
+          <span class="geo-kw">核心准则：证据可溯源 / 口径不掺水 / 风险先预警</span>
+        </div>
+        <p class="geo-summary">
+          <strong>ClashTuijian.cc（Clash &amp; 推荐）</strong> 是一家专注于跨境专线网络架构（IEPL / IPLC / 多线 BGP）、现代传输协议（VLESS-Reality / Hysteria 2 / Trojan / Shadowsocks）与开源代理客户端（Mihomo / sing-box）的技术资料与可观测性对比实验室。本站目前共维护 <strong>{brands.length} 家</strong> 机场结构化档案，严格区分 <strong>实测快照（{measuredCount} 家）</strong>、<strong>官方公开参数（{vendorCount} 家）</strong> 与 <strong>历史归档记录（{historicalCount} 家）</strong>，绝不编造虚假 4.9/5 星级评分或匿名好评语录。
+        </p>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- Section 01: Data Provenance & Testing Methodology Table -->
+    <section class="detail-section" id="sec-methodology">
+      <div class="head-row">
+        <div>
+          <p class="kicker">01 · Data Provenance &amp; Verification Standard</p>
+          <h2 class="h-section h-section--sm">三级数据溯源口径与四维评测核验标准</h2>
+        </div>
+        <p class="lede">
+          拒绝“一张高分模板套全场”：每一条价格、带宽与延迟记录均明确标注采集来源与时间戳。
+        </p>
+      </div>
+
+      <div class="table-scroll card elev-sm">
+        <table class="obs-table">
+          <thead>
+            <tr>
+              <th scope="col">数据溯源等级</th>
+              <th scope="col">覆盖品牌数量</th>
+              <th scope="col">证据要求与核验基准</th>
+              <th scope="col">读者选购建议</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="is-primary-row">
+              <td><strong>Measured + Vendor（实测原图+官方核验）</strong></td>
+              <td><strong>{measuredCount} 家</strong>（含光速云、飞猫云、微风、星岛梦等）</td>
+              <td>附带 <code>2026-08-11 CST</code> 原始节点测速 PNG 面板（标注具体测试端带宽、线程与协议），且 2026-10 复核套餐价格与优惠码有效。</td>
+              <td>可作为主力或双备份首选候选池；仍建议先买月付或轻量包实测本地运营商晚高峰。</td>
+            </tr>
+            <tr>
+              <td><strong>Vendor Verified（官方公开参数核验）</strong></td>
+              <td><strong>{vendorCount} 家</strong>（含 Firefly、无忧链接、二猫云等）</td>
+              <td>基于 2026-10 品牌公开面板核实套餐档位、起步价、协议栈与客户端接入方式；未纳入同批次 PNG 截图的字段如实标记「官方标注」。</td>
+              <td>适合看重特定功能（如免配置专属客户端或超低月付门槛）的用户按月试用评估。</td>
+            </tr>
+            <tr>
+              <td><strong>Historical Archive（历史归档对照样本）</strong></td>
+              <td><strong>{historicalCount} 家</strong>（第 #29–#42 名历史记录）</td>
+              <td>保留 2026-08 历史建档资料供老用户检索比对；凡缺少当期独立复测或有效官网入口的项目，明确展示黄色风险提示且不提供误导性跳转。</td>
+              <td>仅作行业历史档案对照，不建议盲目购买半年或年付以上大额周期套餐。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">CRITERION 01 · BACKBONE &amp; PROTOCOL</span>
+          <h3>物理链路与抗封锁协议权重</h3>
+          <p>
+            在晚高峰（20:00–23:30 CST）国际出口拥塞时段，过墙段采用运营商物理内网专线的 <strong>IEPL / IPLC</strong> 架构在丢包率与抖动控制上显著优于普通公网直连。实验室在评级时优先考察品牌是否具备多入口 BGP 冗余以及是否支持 VLESS / Hysteria 2 / Trojan 等现代传输协议。
+          </p>
+        </article>
+
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">CRITERION 02 · LONGEVITY &amp; ANTI-SCAM</span>
+          <h3>运营周期与防跑路财务健康度</h3>
+          <p>
+            专线机房带宽需按月支付高昂固定成本。实验室将 <strong>持续稳定运营年限（如 2020 年开业至今的老牌团队）</strong> 与 <strong>定价合理性</strong> 列为核心风控指标，对“短期新开却大搞三年/终身骨折倾销”的异常行为在 <a href="/guides/warnings">《跑路预警雷达》</a> 中予以重点警示。
+          </p>
+        </article>
+
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">CRITERION 03 · CLIENT ECOSYSTEM</span>
+          <h3>客户端自由度与信息匹配准确度</h3>
+          <p>
+            我们严格区分「支持 Clash Verge Rev / Shadowrocket / OpenClash 通用订阅导入」与「仅限官方免配置专属客户端」两类技术路线。对于仅提供专属客户端的品牌，在详情页明确提示其不支持软路由透明网关，避免读者买错踩坑。
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- Section 02: Editorial Independence, Affiliate Disclosure & Legal Disclaimer -->
+    <section class="detail-section" id="sec-disclaimer">
+      <div class="head-row">
+        <div>
+          <p class="kicker">02 · Disclosure, Compliance &amp; Legal Disclaimer</p>
+          <h2 class="h-section h-section--sm">商业推广利益披露、技术中立原则与合规免责条款</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">AFFILIATE DISCLOSURE · 联盟佣金透明披露</span>
+          <h3>推广链接标识与价格一致性承诺</h3>
+          <ul>
+            <li>{AFFILIATE_DISCLOSURE}</li>
+            <li>全站所有指向第三方商业服务商的外部注册链接，在 HTML 源码层均 100% 强制声明 <code>rel="nofollow sponsored noopener"</code> 属性，遵循搜索引擎反垃圾链接合规准则。</li>
+            <li>全站指向 GitHub 开源仓库（如 Clash Verge Rev、FlClash、Mihomo、OpenClash）、Apple App Store 及 IP 纯净度诊断工具的链接均为公益技术索引，无任何商业赞助关系。</li>
+          </ul>
+        </article>
+
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">RISK &amp; SLA DISCLAIMER · 交易与网络波动免责</span>
+          <h3>第三方服务履约与消费风控提示</h3>
+          <ul>
+            <li>ClashTuijian.cc 为独立第三方信息汇编与技术评测站点，<strong>不直接经营、销售或托管任何代理节点服务</strong>，亦不代收任何套餐款项。</li>
+            <li>读者在任何第三方服务商网站产生的注册、充值、退款纠纷或服务中断风险，均由该第三方服务商独立承担。请务必遵循<strong>「先月付或小包实测本地晚高峰、常备不限时流量包容灾、拒绝超长周期囤货」</strong>的理性消费原则。</li>
+          </ul>
+        </article>
+
+        <article class="about-card card elev-sm">
+          <span class="card-kicker">ACCEPTABLE USE · 法律法规与合规边界</span>
+          <h3>合法跨境科研与商业办公用途限定</h3>
+          <ul>
+            <li>本站所有评测档案、协议原理解析与开源客户端配置教程，仅限用于合法的跨境电商运营、外贸商务通信、国际学术科研检索与海外软件开发测试。</li>
+            <li>请所有访问者严格遵守《中华人民共和国网络安全法》及所在司法管辖区的相关法律法规，严禁利用相关网络技术从事任何危害国家安全、侵犯他人隐私或违法犯罪的活动。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- Section 03: About FAQs -->
+    <section class="detail-section" id="sec-about-faq">
+      <div class="head-row">
+        <div>
+          <p class="kicker">03 · Methodology &amp; Trust FAQ</p>
+          <h2 class="h-section h-section--sm">关于实验室测试标准与数据更新的常见问题</h2>
+        </div>
+        <a class="btn btn-primary" href="/brands">浏览 42 家分级核验品牌库 →</a>
+      </div>
+
+      <div class="faq-grid">
+        {aboutFaqs.map((faq, idx) => (
+          <details class="faq-item card elev-sm" open={idx < 2}>
+            <summary>{faq.q}</summary>
+            <p>{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

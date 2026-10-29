@@ -1,0 +1,68 @@
+---
+interface Props {
+  active: 'hub' | 'resources' | 'faq' | 'warnings' | 'brands' | 'about';
+}
+
+const { active } = Astro.props;
+
+const items = [
+  {
+    id: 'hub',
+    href: '/guides',
+    kicker: 'HUB MATRIX',
+    label: '专题总导航',
+    desc: 'SEO/GEO 知识矩阵总览',
+  },
+  {
+    id: 'resources',
+    href: '/guides/resources',
+    kicker: 'PILLAR 01 · FREE & OPEN-SOURCE',
+    label: '免费资源与开源工具库',
+    desc: '客户端 · 分流规则 · IP检测 · WARP',
+  },
+  {
+    id: 'faq',
+    href: '/guides/faq',
+    kicker: 'PILLAR 02 · WIKI & TROUBLESHOOTING',
+    label: '机场百科与排障 FAQ',
+    desc: '6大分类 · 24条深度排障与配置问答',
+  },
+  {
+    id: 'warnings',
+    href: '/guides/warnings',
+    kicker: 'PILLAR 03 · RISK RADAR',
+    label: '跑路预警与风险评级',
+    desc: '6大高危信号 · 42家品牌风险分层',
+  },
+  {
+    id: 'brands',
+    href: '/brands',
+    kicker: 'DATABASE · 42 PROVIDERS',
+    label: '42家机场评测全库',
+    desc: '17份实测原图 · 价格与协议检索',
+  },
+  {
+    id: 'about',
+    href: '/about',
+    kicker: 'E-E-A-T · METHODOLOGY',
+    label: '评测方法论与免责声明',
+    desc: '实验室测试基准 · 评级与合规准则',
+  },
+] as const;
+---
+
+<nav class="pillar-matrix-nav" aria-label="SEO 与 GEO 专题矩阵导航">
+  <div class="pillar-matrix-grid">
+    {items.map((item) => (
+      <a
+        href={item.href}
+        class:list={['pillar-nav-card', { 'is-active': active === item.id }]}
+        aria-current={active === item.id ? 'page' : undefined}
+      >
+        <span class="pillar-nav-kicker">{item.kicker}</span>
+        <strong class="pillar-nav-title">{item.label}</strong>
+        <span class="pillar-nav-desc">{item.desc}</span>
+      </a>
+    ))}
+  </div>
+</nav>

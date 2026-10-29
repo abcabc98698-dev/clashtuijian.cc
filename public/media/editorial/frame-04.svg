@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-85 -80 1170 1160" width="1000" height="1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="IEPL / IPLC 物理专线跨境拓扑">
+  <defs>
+    <linearGradient id="lbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1f36"/>
+      <stop offset="100%" stop-color="#121424"/>
+    </linearGradient>
+    <pattern id="lg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f59e0b" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-170" y="-160" width="1340" height="1320" fill="url(#lbg)"/>
+  <rect x="-170" y="-160" width="1340" height="1320" fill="url(#lg)"/>
+  <rect x="32" y="32" width="936" height="936" rx="16" fill="#171a2d" fill-opacity="0.9" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="68" y="86" fill="#f59e0b" font-size="14" font-weight="700">REPORT 04 // NETWORK PATH OBSERVATORY</text>
+    <text x="68" y="136" fill="#e9e9ed" font-size="34" font-weight="700" font-family="Inter, system-ui, sans-serif">IEPL / IPLC 物理专线跨境拓扑</text>
+    <text x="68" y="174" fill="#b2b6ca" font-size="16" font-family="Inter, system-ui, sans-serif">国内三网 BGP 入口 → 加密隧道 VLESS/Trojan → 内网专线直连过境（绕过公网 GFW 拥塞）</text>
+    <line x1="68" y1="204" x2="932" y2="204" stroke="#393e5e" stroke-width="1"/>
+
+    <g transform="translate(68, 228)">
+      <rect width="864" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#f59e0b"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Stage 01 · 客户端分流</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">Mihomo 规则分流 + TUN</text>
+      <text x="720" y="53" text-anchor="end" fill="#f59e0b" font-size="16" font-weight="600">Clash Verge Rev / Shadowrocket</text>
+      <rect x="740" y="32" width="104" height="32" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+      <text x="792" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Local</text>
+    </g>
+    <g transform="translate(68, 356)">
+      <rect width="864" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#f59e0b"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Stage 02 · 国内 BGP 入口</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">隐藏真实 IP · 毫秒级接入</text>
+      <text x="720" y="53" text-anchor="end" fill="#f59e0b" font-size="16" font-weight="600">广州 / 上海 / 深圳 多线入口</text>
+      <rect x="740" y="32" width="104" height="32" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+      <text x="792" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Ingress</text>
+    </g>
+    <g transform="translate(68, 484)">
+      <rect width="864" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#f59e0b"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Stage 03 · IEPL/IPLC 专线</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">不经公网 GFW · 防晚高峰 QoS</text>
+      <text x="720" y="53" text-anchor="end" fill="#f59e0b" font-size="16" font-weight="600">点对点物理内网跨境传输</text>
+      <rect x="740" y="32" width="104" height="32" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+      <text x="792" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Backbone</text>
+    </g>
+    <g transform="translate(68, 612)">
+      <rect width="864" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#f59e0b"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Stage 04 · 海外原生落地</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">解锁 AI 生产力与 4K 流媒体</text>
+      <text x="720" y="53" text-anchor="end" fill="#f59e0b" font-size="16" font-weight="600">香港 / 东京 / 新加坡 / 洛杉矶</text>
+      <rect x="740" y="32" width="104" height="32" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+      <text x="792" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Egress</text>
+    </g>
+    <g transform="translate(68, 740)">
+      <rect width="864" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#f59e0b"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Stage 05 · 冗余负载均衡</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">单节点故障秒级无感容灾</text>
+      <text x="720" y="53" text-anchor="end" fill="#f59e0b" font-size="16" font-weight="600">多节点健康检查自动切换</text>
+      <rect x="740" y="32" width="104" height="32" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+      <text x="792" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Failover</text>
+    </g>
+
+    <text x="68" y="940" fill="#9397ab" font-size="13">ARCHITECTURE: 相比普通公网直连与普通中转，IEPL/IPLC 在晚高峰丢包率显著更低</text>
+  </g>
+</svg>

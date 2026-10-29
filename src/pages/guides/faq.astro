@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import GuidesNav from '../../components/GuidesNav.astro';
+import { faqCategories, allGuideFaqs } from '../../data/guides-faq';
+import { AFFILIATE_DISCLOSURE } from '../../data/brands';
+
+const pageTitle =
+  '2026 Clash 机场百科与故障排障 FAQ：IEPL原理、订阅报错与AI解锁 | ClashTuijian.cc';
+const pageDesc =
+  '万字级 Clash 机场与代理客户端排障百科全书：涵盖 IEPL/IPLC 专线原理、VLESS/Trojan/Hysteria2 协议对比、Clash Verge Rev 订阅报错与国内断网修复、ChatGPT Access Denied 与 Claude 防封号、OpenWrt 软路由透明代理及套餐流量精算。';
+const canonical = 'https://clashtuijian.cc/guides/faq';
+
+const customSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: 'https://clashtuijian.cc/' },
+      { '@type': 'ListItem', position: 2, name: '专题指南中心', item: 'https://clashtuijian.cc/guides' },
+      { '@type': 'ListItem', position: 3, name: '机场百科与排障 FAQ', item: canonical },
+    ],
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    mainEntity: allGuideFaqs.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: `${item.shortAnswer} ${item.detail}`,
+      },
+    })),
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.45;"
+  customSchema={customSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="/">首页 (推荐 Clash)</a>
+        <span>/</span>
+        <a href="/guides">专题指南中心</a>
+        <span>/</span>
+        <span aria-current="page">Clash 机场百科与故障排障 FAQ</span>
+      </nav>
+
+      <GuidesNav active="faq" />
+
+      <section class="detail-hero">
+        <div class="detail-badges">
+          <span class="badge-rank">PILLAR 02</span>
+          <span class="badge-tier is-top">6 大技术专题 · 万字排障百科</span>
+          <span class="badge-status status-measured-plus-vendor">✓ AI 搜索引擎 (GEO) 结构化适配</span>
+          <span class="badge-date">更新日期：2026-10-29</span>
+        </div>
+
+        <h1 class="detail-h1">Clash 机场百科与客户端故障排查知识库 (2026 全量版)</h1>
+
+        <div class="geo-tldr-box elev-sm">
+          <div class="geo-tldr-head">
+            <span class="geo-tag">GEO 结构化诊断中心 · 3 秒定位故障根因</span>
+            <span class="geo-kw">支持实时关键词检索与 6 大场景分类过滤</span>
+          </div>
+          <p class="geo-summary">
+            无论您是刚接触代理的新手（好奇 <strong>IEPL 专线与普通节点有什么区别、一个月需要多少流量</strong>），还是正在排查棘手故障的进阶用户（遇到 <strong>订阅拉取 Network Error、连上代理打不开网页、ChatGPT 提示 Access Denied、macOS 提示应用已损坏、软路由跑光流量</strong>），均可在下方知识库中直接检索标准答案。
+          </p>
+        </div>
+
+        <!-- Interactive Search & Category Filter Console -->
+        <div class="filter-console" role="search" aria-label="百科知识库搜索与分类切换">
+          <div class="filter-row-top">
+            <div class="search-box">
+              <label for="faq-search" class="sr-only">搜索故障现象、报错代码、协议或平台</label>
+              <input
+                id="faq-search"
+                type="search"
+                placeholder="输入报错或关键词（例如：Network Error、ChatGPT、奈飞、已损坏、TUN模式、IEPL、倍率、软路由）..."
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <div class="filter-tags" role="group" aria-label="知识库分类切换">
+            <button type="button" class="filter-chip is-active" data-cat="all">
+              全部专题 ({allGuideFaqs.length})
+            </button>
+            {faqCategories.map((cat) => (
+              <button type="button" class="filter-chip" data-cat={cat.id}>
+                {cat.badge} ({cat.items.length})
+              </button>
+            ))}
+          </div>
+
+          <div class="filter-status-bar">
+            <span id="faq-filter-count">当前展示全部 6 大分类共 {allGuideFaqs.length} 条深度技术问答</span>
+            <button type="button" id="faq-reset-btn" class="btn-reset" hidden>重置筛选条件</button>
+          </div>
+        </div>
+
+        <!-- GEO Quick Reference Native Table inside Collapsible Details -->
+        <details class="faq-item card elev-sm" open style="margin-top: 20px;">
+          <summary>展开速查表：2026 主流专线协议架构与高频客户端报错 10 秒定位矩阵</summary>
+          <div class="table-scroll" style="margin-top: 14px;">
+            <table class="obs-table">
+              <thead>
+                <tr>
+                  <th scope="col">故障现象 / 选型问题</th>
+                  <th scope="col">高频根因</th>
+                  <th scope="col">标准修复动作</th>
+                  <th scope="col">推荐适配机场</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>订阅导入报 Network Error / YAML Error</strong></td>
+                  <td>旧版 CFW 内核不识别 VLESS 或拉取订阅走了旧代理</td>
+                  <td>升级 Clash Verge Rev (Mihomo 内核)，关系统代理拉取或开启订阅 User-Agent: clash.meta</td>
+                  <td><a href="/brands/guangsuyun">#1 光速云</a> / <a href="/brands/weifeng">#3 微风网络</a></td>
+                </tr>
+                <tr>
+                  <td><strong>退出客户端后国内网页全部打不开</strong></td>
+                  <td>Windows/macOS 系统代理残留指向 127.0.0.1:7897</td>
+                  <td>重开客户端正常关闭 System Proxy，或在系统网络设置中手动关闭局域网代理开关</td>
+                  <td>不想折腾选 <a href="/brands/feimaoyun">#2 飞猫云</a> 专属端</td>
+                </tr>
+                <tr>
+                  <td><strong>ChatGPT / Claude 提示 Access Denied</strong></td>
+                  <td>机房广播 IP 欺诈值过高或 WebRTC/DNS 暴露真实归属地</td>
+                  <td>切换原生家宽/AI 专用节点（日本/新加坡/台湾/美国），开启 Fake-IP 防泄露模式</td>
+                  <td><a href="/brands/weifeng">#3 微风网络</a> / <a href="/brands/yifanyun">#16 一翻云</a></td>
+                </tr>
+                <tr>
+                  <td><strong>晚高峰 4K 视频卡顿缓冲、游戏丢包</strong></td>
+                  <td>公网直连节点受国际出口晚高峰 QoS 拥塞限速</td>
+                  <td>改用过墙段走运营商内网物理专线的 IEPL / IPLC 节点，避开公网海缆拥堵</td>
+                  <td><a href="/brands/guangsuyun">#1 光速云</a> / <a href="/brands/xingdaomeng">#6 星岛梦</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <!-- 6 Major FAQ Categories -->
+      <div id="faq-categories-container">
+        {faqCategories.map((cat) => (
+          <section class="detail-section faq-cat-section" id={cat.id} data-cat-section={cat.id}>
+            <div class="head-row">
+              <div>
+                <p class="kicker">{cat.badge}</p>
+                <h2 class="h-section h-section--sm">{cat.title}</h2>
+              </div>
+              <p class="lede">{cat.summary}</p>
+            </div>
+
+            <div class="wiki-qa-stack">
+              {cat.items.map((item) => (
+                <article
+                  class="wiki-qa-card card elev-sm"
+                  id={item.id}
+                  data-qa-item
+                  data-qa-cat={cat.id}
+                  data-qa-search={`${item.q} ${item.shortAnswer} ${item.detail} ${item.tags.join(' ')}`.toLowerCase()}
+                >
+                  <div class="wiki-qa-header">
+                    <h3 class="wiki-qa-title">{item.q}</h3>
+                    <div class="wiki-qa-tags">
+                      {item.tags.map((t) => (
+                        <span class="dir-tag dir-tag--accent">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="wiki-short-answer">
+                    <span class="wiki-tldr-label">✦ 核心速答：</span>
+                    <p>{item.shortAnswer}</p>
+                  </div>
+
+                  <div class="wiki-detail-body">
+                    {item.detail.split('\n').map((para) => (
+                      <p>{para}</p>
+                    ))}
+                  </div>
+
+                  {item.codeSnippet && (
+                    <pre class="code-block"><code>{item.codeSnippet}</code></pre>
+                  )}
+
+                  {item.recommendedBrands && item.recommendedBrands.length > 0 && (
+                    <div class="wiki-rec-bar">
+                      <span class="wiki-rec-label">适配品牌推荐：</span>
+                      <div class="wiki-rec-links">
+                        {item.recommendedBrands.map((rb) => (
+                          <a class="wiki-rec-pill" href={`/brands/${rb.slug}`}>
+                            <strong>{rb.name}</strong> · {rb.reason} →
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div id="faq-empty-state" class="dir-empty" hidden>
+        <h3>未找到匹配的排障词条</h3>
+        <p>请尝试搜索更简短的关键词（如“订阅”、“DNS”、“ChatGPT”、“软路由”），或点击下方按钮恢复全部词条。</p>
+        <button type="button" id="faq-empty-reset" class="btn btn-primary">显示全部百科词条</button>
+      </div>
+
+      <p class="disclosure-note" style="margin-top: 40px;">{AFFILIATE_DISCLOSURE}</p>
+    </main>
+
+    <Footer />
+
+  <script is:inline>
+    (() => {
+      const searchInput = document.getElementById('faq-search');
+      const chips = Array.from(document.querySelectorAll('.filter-chip[data-cat]'));
+      const sections = Array.from(document.querySelectorAll('[data-cat-section]'));
+      const items = Array.from(document.querySelectorAll('[data-qa-item]'));
+      const countEl = document.getElementById('faq-filter-count');
+      const resetBtn = document.getElementById('faq-reset-btn');
+      const emptyState = document.getElementById('faq-empty-state');
+      const emptyReset = document.getElementById('faq-empty-reset');
+
+      let activeCat = 'all';
+
+      function updateView() {
+        const q = (searchInput ? searchInput.value : '').trim().toLowerCase();
+        let visibleCount = 0;
+
+        items.forEach((el) => {
+          const itemCat = el.getAttribute('data-qa-cat') || '';
+          const text = el.getAttribute('data-qa-search') || '';
+          const matchCat = activeCat === 'all' || itemCat === activeCat;
+          const matchQ = !q || text.includes(q);
+          const show = matchCat && matchQ;
+          el.hidden = !show;
+          if (show) visibleCount++;
+        });
+
+        sections.forEach((sec) => {
+          const anyVisible = sec.querySelectorAll('[data-qa-item]:not([hidden])').length > 0;
+          sec.hidden = !anyVisible;
+        });
+
+        if (countEl) {
+          countEl.textContent = `当前匹配显示 ${visibleCount} 条深度技术问答`;
+        }
+        if (resetBtn) {
+          resetBtn.hidden = activeCat === 'all' && !q;
+        }
+        if (emptyState) {
+          emptyState.hidden = visibleCount > 0;
+        }
+      }
+
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chips.forEach((c) => c.classList.remove('is-active'));
+          chip.classList.add('is-active');
+          activeCat = chip.getAttribute('data-cat') || 'all';
+          updateView();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', updateView);
+      }
+
+      function resetAll() {
+        activeCat = 'all';
+        if (searchInput) searchInput.value = '';
+        chips.forEach((c) => c.classList.toggle('is-active', c.getAttribute('data-cat') === 'all'));
+        updateView();
+      }
+
+      if (resetBtn) resetBtn.addEventListener('click', resetAll);
+      if (emptyReset) emptyReset.addEventListener('click', resetAll);
+    })();
+  </script>
+</Layout>

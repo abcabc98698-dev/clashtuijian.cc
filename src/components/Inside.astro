@@ -1,0 +1,122 @@
+---
+import { inside } from '../config';
+import { clientPlatforms, galleryShowcases } from '../data/clients';
+---
+<section id={inside.id} class="inside" data-scene="par" data-ground aria-labelledby="space-heading">
+  <div class="wrap">
+    <header class="head-row">
+      <div>
+        <div class="kicker">{inside.kicker}</div>
+        <h2 id="space-heading" class="h-section rv" data-w="0.08 0.3">{inside.title}</h2>
+      </div>
+      <p class="lede rv" data-w="0.12 0.3">{inside.lede}</p>
+    </header>
+
+    <div class="inside-grid">
+      {inside.rooms.map((r) => {
+        const panel = galleryShowcases[r.id];
+        return (
+          <figure
+            id={r.id}
+            class:list={['room', 'rv', { 'room--tall': r.tall }]}
+            data-rel
+            data-w={r.tall ? '0.28 0.4' : '0.22 0.4'}
+            style={`--d: ${r.offset}`}
+          >
+            <div class="room-frame room-frame--interactive" style={`--panel-accent: ${panel?.accent ?? '#b5abfc'}`}>
+              <div class="room-drift room-drift--bg" style={`--drift: ${r.drift}`} aria-hidden="true"></div>
+              {panel && (
+                <div class="room-console">
+                  <div class="room-console-head">
+                    <div>
+                      <span class="room-console-kicker">{panel.kicker}</span>
+                      <h3 class="room-console-title">{panel.title}</h3>
+                    </div>
+                    <span class="room-console-status">{panel.statusText}</span>
+                  </div>
+
+                  <div class="room-console-list" role="list">
+                    {panel.rows.map((row) => (
+                      <a
+                        class="room-client-row"
+                        href={row.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        role="listitem"
+                      >
+                        <div class="room-client-main">
+                          <div class="room-client-name-row">
+                            <span class="room-client-dot" aria-hidden="true"></span>
+                            <strong>{row.name}</strong>
+                          </div>
+                          <p>{row.desc}</p>
+                        </div>
+                        <span class="room-client-cta">{row.badge}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            <figcaption class="caption">
+              <span>{r.caption[0]}</span>
+              <span>{r.caption[1]} · 点击任一客户端直达开源下载</span>
+            </figcaption>
+          </figure>
+        );
+      })}
+    </div>
+
+    <div class="client-matrix-wrap">
+      <div class="client-matrix-header">
+        <div class="kicker">2026 Open-Source Client Directory</div>
+        <h3 class="client-matrix-title">全平台开源代理客户端官方下载与订阅兼容性大全</h3>
+        <p class="lede">
+          点击下方任意客户端右侧按钮即可直达 <strong>GitHub 官方开源 Releases 下载页</strong> 或 <strong>App Store 官方页面</strong>。
+          需要导入第三方通用订阅（Clash Verge Rev / Shadowrocket / OpenClash）请优先选择
+          <a href="/brands/guangsuyun">光速云</a>、<a href="/brands/weifeng">微风网络</a>、<a href="/brands/xingdaomeng">星岛梦</a>；
+          不想折腾配置文件的新手可直接选择提供官方专属客户端的 <a href="/brands/feimaoyun">飞猫云</a> 或 <a href="/brands/wuyoulianjie">无忧链接</a>。
+        </p>
+      </div>
+
+      <div class="client-platform-grid">
+        {clientPlatforms.map((plat) => (
+          <article class="client-platform-card" id={`platform-${plat.id}`}>
+            <div class="client-platform-top">
+              <h4>{plat.platform}</h4>
+              <span class="client-platform-badge">{plat.badge}</span>
+            </div>
+            <p class="client-platform-notice">{plat.notice}</p>
+            <ul class="client-list">
+              {plat.clients.map((c) => (
+                <li class:list={['client-item', { 'is-rec': c.recommended }]}>
+                  <div class="client-item-head">
+                    <a
+                      class="client-item-name"
+                      href={c.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <strong>{c.name}</strong>
+                    </a>
+                    {c.recommended && <span class="rec-pill">主力推荐</span>}
+                    <span class="core-pill">{c.core}</span>
+                    <a
+                      class="client-dl-btn"
+                      href={c.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {c.downloadLabel}
+                    </a>
+                  </div>
+                  <p>{c.features}</p>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

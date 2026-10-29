@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import GuidesNav from '../components/GuidesNav.astro';
+
+export const noindex = true;
+
+const pageTitle = '404 页面未找到 — 返回专线机场评测库 | ClashTuijian.cc';
+const pageDesc = '您访问的链接不存在或已移动。请通过下方导航返回 ClashTuijian.cc 首页、42家机场品牌库或专题排障指南中心。';
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  noindex={true}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.2;"
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+    <section class="detail-hero" style="padding: 8vh 0 4vh;">
+      <div class="detail-badges">
+        <span class="badge-rank">HTTP 404</span>
+        <span class="badge-tier">RESOURCE NOT FOUND</span>
+      </div>
+
+      <h1 class="detail-h1">404 — 未找到您访问的页面</h1>
+      <p class="lede" style="max-width: 62ch; margin-top: 16px;">
+        该网址可能输入有误或已变更。本站所有正式评测档案与专题教程均采用标准无斜杠小写路径，您可以通过下方核心入口快速直达目标内容：
+      </p>
+
+      <div class="btn-row" style="margin-top: 28px; gap: 12px; flex-wrap: wrap;">
+        <a class="btn btn-primary" href="/">返回首页 (Top 10 榜单) →</a>
+        <a class="btn btn-secondary" href="/brands">检索 42 家机场品牌库</a>
+        <a class="btn btn-secondary" href="/brands/guangsuyun">查看 #1 光速云深度评测</a>
+        <a class="btn btn-secondary" href="/guides/resources">免费客户端与规则库</a>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section class="detail-section">
+      <div class="head-row" style="margin-bottom: 20px;">
+        <div>
+          <p class="kicker">Quick Directory Navigation</p>
+          <h2 class="h-section h-section--sm">全站核心栏目与万字级专题入口</h2>
+        </div>
+      </div>
+      <GuidesNav active="hub" />
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -60 1340 920" width="1280" height="800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Linux 与 OpenWrt 软路由及协议架构">
+  <defs>
+    <linearGradient id="ibg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#192634"/>
+      <stop offset="100%" stop-color="#121624"/>
+    </linearGradient>
+    <pattern id="ig3" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#10b981" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-60" y="-120" width="1400" height="1040" fill="url(#ibg3)"/>
+  <rect x="-60" y="-120" width="1400" height="1040" fill="url(#ig3)"/>
+  <rect x="104" y="68" width="1072" height="664" rx="16" fill="#1b1f34" fill-opacity="0.94" stroke="#10b981" stroke-opacity="0.4" stroke-width="1.5"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="144" y="122" fill="#10b981" font-size="13" font-weight="700">ROUTER &amp; PROTOCOLS // TRANSPARENT PROXY GATEWAY</text>
+    <text x="144" y="168" fill="#e9e9ed" font-size="28" font-weight="700" font-family="Inter, system-ui, sans-serif">Linux / OpenWrt 软路由网关与专线协议架构</text>
+    
+    <g transform="translate(144, 200)">
+      <rect width="992" height="100" rx="10" fill="#16192b" stroke="#323652" stroke-width="1.2"/>
+      <circle cx="26" cy="36" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="20" font-weight="700" font-family="Inter, system-ui, sans-serif">OpenClash / Nikki (OpenWrt)</text>
+      <text x="44" y="74" fill="#cfd3e5" font-size="14.5" font-family="Inter, system-ui, sans-serif">软路由全家桶透明代理网关 · Apple TV / 主机游戏 / 智能家居免配共享专线</text>
+      <rect x="826" y="22" width="142" height="30" rx="6" fill="#10b981" fill-opacity="0.16" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="897" y="42" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="700">GATEWAY</text>
+    </g>
+    <g transform="translate(144, 322)">
+      <rect width="992" height="100" rx="10" fill="#16192b" stroke="#323652" stroke-width="1.2"/>
+      <circle cx="26" cy="36" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="20" font-weight="700" font-family="Inter, system-ui, sans-serif">PassWall2 / HomeProxy / v2rayA</text>
+      <text x="44" y="74" fill="#cfd3e5" font-size="14.5" font-family="Inter, system-ui, sans-serif">基于 Xray / sing-box 与 Linux Web 控制台的轻量级透明分流方案</text>
+      <rect x="826" y="22" width="142" height="30" rx="6" fill="#10b981" fill-opacity="0.16" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="897" y="42" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="700">LINUX / ROUTER</text>
+    </g>
+    <g transform="translate(144, 444)">
+      <rect width="992" height="100" rx="10" fill="#16192b" stroke="#323652" stroke-width="1.2"/>
+      <circle cx="26" cy="36" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="20" font-weight="700" font-family="Inter, system-ui, sans-serif">IEPL / IPLC 物理内网专线 + VLESS</text>
+      <text x="44" y="74" fill="#cfd3e5" font-size="14.5" font-family="Inter, system-ui, sans-serif">绕过公网国际出口拥塞与 QoS 限速 · 晚高峰 4K 流媒体与 AI 低延迟核心</text>
+      <rect x="826" y="22" width="142" height="30" rx="6" fill="#10b981" fill-opacity="0.16" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="897" y="42" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="700">BACKBONE</text>
+    </g>
+    <g transform="translate(144, 566)">
+      <rect width="992" height="100" rx="10" fill="#16192b" stroke="#323652" stroke-width="1.2"/>
+      <circle cx="26" cy="36" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="20" font-weight="700" font-family="Inter, system-ui, sans-serif">通用订阅链接 vs 专属客户端选型</text>
+      <text x="44" y="74" fill="#cfd3e5" font-size="14.5" font-family="Inter, system-ui, sans-serif">软路由必选支持通用订阅品牌（光速云 / 微风 / 星岛梦 / 暮光加速）</text>
+      <rect x="826" y="22" width="142" height="30" rx="6" fill="#10b981" fill-opacity="0.16" stroke="#10b981" stroke-opacity="0.4"/>
+      <text x="897" y="42" text-anchor="middle" fill="#6ee7b7" font-size="11.5" font-weight="700">RULE</text>
+    </g>
+  </g>
+</svg>

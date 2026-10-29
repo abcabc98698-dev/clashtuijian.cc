@@ -1,0 +1,328 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import GuidesNav from '../../components/GuidesNav.astro';
+import {
+  warningSignals,
+  riskTierGroups,
+  redundancyCombos,
+  warningFaqs,
+} from '../../data/guides-warnings';
+import { AFFILIATE_DISCLOSURE } from '../../data/brands';
+
+const pageTitle =
+  '2026 机场跑路预警指南：6大高危信号、42家风险评级表与备份方案 | ClashTuijian.cc';
+const pageH1 =
+  '2026 机场跑路预警雷达：6大高危前兆、42家风险分层评级与零断联避险指南';
+const pageDesc =
+  '万字级 Clash 机场跑路预警与风险监控中心：深度剖析中小机场跑路前 6 大高危信号（超长周期骨折倾销、IEPL静默降级、工单失联等），完整公示站内 42 家机场 Tier S/A/B/C 风险分层评级表，并提供「主力IEPL+永久不限时包」零断联方案。';
+const canonical = 'https://clashtuijian.cc/guides/warnings';
+
+const customSchema = [
+  {
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical}#breadcrumb`,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '首页', item: 'https://clashtuijian.cc/' },
+      { '@type': 'ListItem', position: 2, name: '专题指南中心', item: 'https://clashtuijian.cc/guides' },
+      { '@type': 'ListItem', position: 3, name: '跑路预警与风险评级', item: canonical },
+    ],
+  },
+  {
+    '@type': 'Article',
+    '@id': `${canonical}#article`,
+    headline: pageH1,
+    description: pageDesc,
+    image: ['https://clashtuijian.cc/media/hero/og-cover.png'],
+    datePublished: '2026-10-29',
+    dateModified: '2026-10-29',
+    author: { '@id': 'https://clashtuijian.cc/#organization' },
+    publisher: { '@id': 'https://clashtuijian.cc/#organization' },
+    mainEntityOfPage: { '@id': `${canonical}#webpage` },
+  },
+  {
+    '@type': 'FAQPage',
+    '@id': `${canonical}#faq`,
+    mainEntity: warningFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  ogType="article"
+  publishedTime="2026-10-29"
+  updatedDate="2026-10-29"
+  category="机场跑路预警与风险评级"
+  tags={['机场跑路预警', 'IEPL专线成本', '不限时流量包备份', '42家风险评级']}
+  dark={true}
+  pageStyle="--hp: 1; --lt: 1; --sp: 0.55;"
+  customSchema={customSchema}
+>
+  <Nav />
+
+  <main id="main" class="subpage-main">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="/">首页 (推荐 Clash)</a>
+        <span>/</span>
+        <a href="/guides">专题指南中心</a>
+        <span>/</span>
+        <span aria-current="page">机场跑路预警与 42 家风险分层中心</span>
+      </nav>
+
+      <GuidesNav active="warnings" />
+
+      <section class="detail-hero">
+        <div class="detail-badges">
+          <span class="badge-rank">PILLAR 03</span>
+          <span class="badge-tier is-top">6 大跑路信号 · 42 家全量风险评级</span>
+          <span class="badge-status status-measured-plus-vendor">✓ 基于通信硬件成本与实测核验</span>
+          <span class="badge-date">更新日期：2026-10-29</span>
+        </div>
+
+        <h1 class="detail-h1">2026 机场跑路预警雷达：6大高危前兆、42家风险分层评级与零断联避险指南</h1>
+
+        <div class="geo-tldr-box elev-sm">
+          <div class="geo-tldr-head">
+            <span class="geo-tag">GEO 速览结论 · 机场防跑路核心铁律</span>
+            <span class="geo-kw">核心词：机场跑路预警 / 稳定老牌机场 / 永久不限时备用包</span>
+          </div>
+          <p class="geo-summary">
+            为什么中小型机场每年都有跑路失联？因为 IEPL/IPLC 物理专线与国内多线 BGP 入口需要按月向机房支付高昂的硬性带宽月租。凡是<strong>运营不满 1 年却突然大搞「买一年送两年 / 39元包终身无限流量」骨折促销</strong>、<strong>将 IEPL 专线静默降级为高丢包公网直连</strong>或<strong>工单/TG群超过 7 天全体禁言失联</strong>的品牌，均属于极高危收割信号。
+          </p>
+          <p class="geo-desc">
+            <strong>实验室防踩坑黄金策略：</strong>主力机场优先选择 2020 年起稳定运营至今的 <strong>Tier S 老牌双专线（#1 光速云、#6 星岛梦）</strong> 或附带 2026-08-11 真实测速原图的 <strong>Tier A 活跃专线（#2 飞猫云、#3 微风网络、#4 暮光加速）</strong>；同时在客户端内常备一个 <strong>一次性付费永久不过期的不限时流量包（如光速云 ¥147/247GB 或星岛梦 ¥100/100GB）</strong> 作为异地容灾热备，彻底告别断网焦虑。
+          </p>
+          <div class="highlight-pills" style="margin-top: 8px;">
+            <a class="highlight-pill" href="#sec-signals" style="text-decoration: none;">01 跑路 6 大高危前兆</a>
+            <a class="highlight-pill" href="#sec-tiers" style="text-decoration: none;">02 42家机场风险分层总表</a>
+            <a class="highlight-pill" href="#sec-redundancy" style="text-decoration: none;">03 主力+备用零断联方案</a>
+            <a class="highlight-pill" href="#sec-warning-faq" style="text-decoration: none;">04 跑路止损与自救问答</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 01: 6 Red Flag Warning Signals -->
+      <section class="detail-section" id="sec-signals">
+        <div class="head-row">
+          <div>
+            <p class="kicker">01 · Six Critical Red Flags</p>
+            <h2 class="h-section h-section--sm">中小机场跑路与劣质化的「6 大高危预警信号」</h2>
+          </div>
+          <p class="lede">
+            掌握以下六个基于通信成本学与运维特征的预警信号，可在第一时间识别 99% 的圈钱跑路盘。
+          </p>
+        </div>
+
+        <div class="wiki-qa-stack" style="margin-top: 4vh;">
+          {warningSignals.map((sig) => (
+            <article class="wiki-qa-card card elev-sm" id={sig.code}>
+              <div class="wiki-qa-header">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="signal-code">{sig.code}</span>
+                  <span class={`signal-sev sev-${sig.severity.toLowerCase()}`}>
+                    风险等级：{sig.severity}
+                  </span>
+                  <h3 class="wiki-qa-title">{sig.title}</h3>
+                </div>
+              </div>
+
+              <div class="signal-detail-grid">
+                <div class="signal-box">
+                  <span class="signal-box-label">⚠️ 典型表象特征 (Symptom)</span>
+                  <p>{sig.symptom}</p>
+                </div>
+                <div class="signal-box">
+                  <span class="signal-box-label">🔍 底层原因拆解 (Root Cause)</span>
+                  <p>{sig.underlyingCause}</p>
+                </div>
+                <div class="signal-box">
+                  <span class="signal-box-label">🧪 用户如何自测核验 (How to Verify)</span>
+                  <p>{sig.howToVerify}</p>
+                </div>
+                <div class="signal-box is-action">
+                  <span class="signal-box-label">🛡️ 防坑与止损对策 (Defense Action)</span>
+                  <p>{sig.defenseAction}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 02: 42 Brands Risk & Transparency Tier Classification -->
+      <section class="detail-section" id="sec-tiers">
+        <div class="head-row">
+          <div>
+            <p class="kicker">02 · 42 Providers Risk &amp; Transparency Tiers</p>
+            <h2 class="h-section h-section--sm">站内 42 家收录品牌「运营资历、实测透明度与风险分层总表」</h2>
+          </div>
+          <p class="lede">
+            我们坚持“有一分证据说一分话”：严格按运营年限、是否附带 2026-08-11 实测图及当期入口核验状态分为 S / A / B / C 四级，绝不编造虚假黑料。
+          </p>
+        </div>
+
+        <div class="tier-groups-stack">
+          {riskTierGroups.map((group) => (
+            <div class={`tier-group-block card elev-sm tier-block--${group.tier.toLowerCase()}`}>
+              <div class="tier-group-head">
+                <div>
+                  <span class="tier-badge">{group.badge}</span>
+                  <h3 class="tier-group-title">{group.title}</h3>
+                </div>
+                <div class="tier-meta-pills">
+                  <span class="tier-risk-pill">{group.riskLevel}</span>
+                  <span class="tier-advice-pill">选购建议：{group.billingAdvice}</span>
+                </div>
+              </div>
+
+              <p class="tier-group-desc">{group.description}</p>
+
+              <div class="table-scroll">
+                <table class="obs-table">
+                  <thead>
+                    <tr>
+                      <th>排名与品牌</th>
+                      <th>成立年份</th>
+                      <th>入门参考价</th>
+                      <th>线路架构与协议</th>
+                      <th>数据核验状态</th>
+                      <th>优惠码</th>
+                      <th>操作与评测</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {group.items.map((b) => (
+                      <tr>
+                        <td>
+                          <strong>
+                            <a href={`/brands/${b.slug}`}>#{String(b.rank).padStart(2, '0')} {b.name}</a>
+                          </strong>
+                        </td>
+                        <td>{b.founded}</td>
+                        <td class="table-price">{b.entryPriceText}</td>
+                        <td class="table-note">{b.lineType}</td>
+                        <td>
+                          <span class="table-badge">
+                            {b.measuredPng
+                              ? '✓ 含 2026-08-11 实测图'
+                              : b.dataStatus === 'vendor'
+                                ? '2026-10 官方核验'
+                                : '2026-08 历史归档'}
+                          </span>
+                        </td>
+                        <td><code>{b.promoCode}</code></td>
+                        <td>
+                          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            {b.registerUrl ? (
+                              <a
+                                class="btn btn-primary btn-xs"
+                                href={b.registerUrl}
+                                target="_blank"
+                                rel="nofollow sponsored noopener"
+                              >
+                                官网 ↗
+                              </a>
+                            ) : (
+                              <a class="btn btn-secondary btn-xs" href="/brands/guangsuyun">
+                                替代首推
+                              </a>
+                            )}
+                            <a class="btn btn-secondary btn-xs" href={`/brands/${b.slug}`}>
+                              档案详情
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 03: Dual-Redundancy Zero-Downtime Architecture -->
+      <section class="detail-section" id="sec-redundancy">
+        <div class="head-row">
+          <div>
+            <p class="kicker">03 · Dual-Redundancy Zero-Downtime Architecture</p>
+            <h2 class="h-section h-section--sm">告别断网焦虑：「主力 IEPL 专线 + 永久不限时包热备」黄金组合</h2>
+          </div>
+          <p class="lede">
+            资深远程开发者与跨境从业者从不把鸡蛋放在一个篮子里。以下三套经过成本精算的双冗余方案，让您全年 365 天远离失联风险。
+          </p>
+        </div>
+
+        <div class="pillar-hero-cards" style="margin-top: 4vh;">
+          {redundancyCombos.map((combo) => (
+            <article class="pillar-feature-card card elev-sm" style="--brand-accent: #10b981">
+              <div class="pillar-card-top">
+                <span class="card-kicker">{combo.badge}</span>
+                <span class="pillar-word-count">{combo.annualizedCost}</span>
+              </div>
+              <h3>{combo.title}</h3>
+              <div class="combo-pair-box">
+                <div class="combo-role">
+                  <span class="combo-tag is-main">主力通道 (Primary)</span>
+                  <strong>
+                    <a href={`/brands/${combo.primaryBrand.slug}`}>{combo.primaryBrand.name}</a>
+                  </strong>
+                  <div class="combo-plan">{combo.primaryBrand.plan}</div>
+                  <p>{combo.primaryBrand.role}</p>
+                </div>
+                <div class="combo-role">
+                  <span class="combo-tag is-backup">异地热备 (Failover Backup)</span>
+                  <strong>
+                    <a href={`/brands/${combo.backupBrand.slug}`}>{combo.backupBrand.name}</a>
+                  </strong>
+                  <div class="combo-plan">{combo.backupBrand.plan}</div>
+                  <p>{combo.backupBrand.role}</p>
+                </div>
+              </div>
+              <p class="pillar-card-desc">{combo.whyItWorks}</p>
+            </article>
+          ))}
+        </div>
+        <p class="disclosure-note" style="margin-top: 18px;">{AFFILIATE_DISCLOSURE}</p>
+      </section>
+
+      <div class="rule"></div>
+
+      <!-- Section 04: Warning FAQs -->
+      <section class="detail-section" id="sec-warning-faq">
+        <div class="head-row">
+          <div>
+            <p class="kicker">04 · Anti-Scam &amp; Self-Rescue FAQ</p>
+            <h2 class="h-section h-section--sm">机场防跑路、故障鉴别与断网自救常见问题解答</h2>
+          </div>
+          <a class="btn btn-secondary" href="/brands">浏览全部 42 家机场名录 →</a>
+        </div>
+
+        <div class="faq-grid">
+          {warningFaqs.map((faq, idx) => (
+            <details class="faq-item card elev-sm" open={idx < 2}>
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+</Layout>

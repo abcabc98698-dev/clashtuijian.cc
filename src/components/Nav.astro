@@ -1,0 +1,34 @@
+---
+import { site, nav } from '../config';
+import { asset, splitAmp } from '../utils';
+const parts = splitAmp(site.name);
+---
+<header>
+  <nav class="site-nav" aria-label="主导航">
+    <a class="nav-brand" href="/" aria-label={`${site.name} — 首页`}>
+      <img src={asset(site.logo)} alt={`${site.name} 标志`} width="22" height="23" decoding="async">
+      <span>{parts.map((p, i) => <>{i > 0 && '&'}{p}</>)}</span>
+    </a>
+    <div class="nav-links">
+      {nav.links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </div>
+    <div class="nav-cta-group">
+      <details class="nav-mobile-drawer">
+        <summary class="nav-mobile-toggle" aria-label="展开移动端导航菜单">栏目 ▾</summary>
+        <div class="nav-mobile-panel">
+          {nav.links.map((l) => <a href={l.href}>{l.label}</a>)}
+          <a href="/about">评测方法论</a>
+        </div>
+      </details>
+      <a
+        class="btn btn-primary"
+        href={nav.cta.href}
+        target={nav.cta.external ? '_blank' : undefined}
+        rel={nav.cta.external ? 'nofollow sponsored noopener' : undefined}
+      >
+        {nav.cta.label}
+      </a>
+    </div>
+  </nav>
+  <div class="progress" aria-hidden="true"></div>
+</header>

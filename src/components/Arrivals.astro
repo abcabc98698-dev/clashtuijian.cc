@@ -1,0 +1,58 @@
+---
+import { arrivals } from '../config';
+import { asset } from '../utils';
+const n = arrivals.items.length;
+---
+<section id={arrivals.id} class="pin arrivals" data-scene="pin" data-lead="0.7" aria-labelledby="collection-heading">
+  <div class="stage">
+    <header class="head-row">
+      <div>
+        <div class="kicker">{arrivals.kicker}</div>
+        <h2 id="collection-heading" class="h-section h-section--sm rv" data-w="0 0.25">{arrivals.title}</h2>
+      </div>
+      <p class="lede rv" data-w="0.05 0.25">{arrivals.lede}</p>
+    </header>
+
+    <div class="fan" data-w="0.12 0.68">
+      {arrivals.items.map((p, i) => (
+        <div class="fan-item" id={p.id} data-w="0.12 0.68" style={`--k: ${i - (n - 1) / 2}`}>
+          <article class="card elev-md fan-card" tabindex="0">
+            <div class="thumb">
+              <img
+                src={asset(p.src)}
+                alt={p.alt}
+                width={p.width}
+                height={p.height}
+                loading="lazy"
+                decoding="async"
+                style={p.pos ? `object-position: ${p.pos}` : undefined}
+              >
+            </div>
+            <span class="card-kicker">{p.kicker}</span>
+            <h3 class="card-title">{p.title}</h3>
+            <p class="card-body">{p.body}</p>
+            <div class="fan-card-actions">
+              <a
+                class="btn btn-primary btn-xs"
+                href={p.registerUrl}
+                target="_blank"
+                rel="nofollow sponsored noopener"
+              >
+                直达官网 (码:{p.promoCode})
+              </a>
+              <a class="btn btn-secondary btn-xs" href={`/brands/${p.slug}`}>
+                实测详情
+              </a>
+            </div>
+            <div class="sheen" aria-hidden="true"></div>
+          </article>
+        </div>
+      ))}
+    </div>
+
+    <div class="arrivals-foot rv" data-w="0.78 0.2">
+      <p>{arrivals.note}</p>
+      <a class="btn btn-ghost" href={arrivals.cta.href}>{arrivals.cta.label}</a>
+    </div>
+  </div>
+</section>

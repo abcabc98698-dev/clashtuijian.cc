@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 640 840" width="600" height="800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="暮光加速 TWILIGHT Network Snapshot">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d2036"/>
+      <stop offset="100%" stop-color="#131524"/>
+    </linearGradient>
+    <pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#f59e0b" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-40" y="-40" width="680" height="880" fill="url(#bg)"/>
+  <rect x="-40" y="-40" width="680" height="880" fill="url(#g)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="#181b2e" fill-opacity="0.85" stroke="#f59e0b" stroke-opacity="0.38" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="52" y="54" width="210" height="28" rx="6" fill="#f59e0b" fill-opacity="0.16"/>
+    <circle cx="70" cy="68" r="4.5" fill="#f59e0b"/>
+    <text x="84" y="73" fill="#f59e0b" font-size="12" font-weight="700">TOP 04 · MULTI-DEVICE</text>
+    <text x="548" y="73" text-anchor="end" fill="#9397ab" font-size="12">CODE: muguang5555</text>
+
+    <text x="52" y="132" fill="#e9e9ed" font-size="32" font-weight="700" font-family="Inter, system-ui, sans-serif">暮光加速 TWILIGHT</text>
+    <text x="52" y="164" fill="#b2b6ca" font-size="15" font-family="Inter, system-ui, sans-serif">BGP 专线出口 · 多设备在线</text>
+
+    <!-- Metric Box -->
+    <rect x="52" y="192" width="496" height="92" rx="10" fill="#21253d" stroke="#393e5e"/>
+    <text x="76" y="224" fill="#9397ab" font-size="12">ENTRY PRICING (VENDOR)</text>
+    <text x="76" y="260" fill="#e9e9ed" font-size="24" font-weight="700">¥9.1 / 月 (年付¥109)</text>
+    <rect x="356" y="214" width="168" height="44" rx="8" fill="#f59e0b" fill-opacity="0.18" stroke="#f59e0b" stroke-opacity="0.5"/>
+    <text x="440" y="241" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">BGP 智能调度 · 全平台</text>
+
+    <!-- Speed Bars -->
+    <text x="52" y="328" fill="#9397ab" font-size="12">NODE TELEMETRY SNAPSHOT (HK / SG / JP)</text>
+    <g transform="translate(52, 350)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">香港 BGP</text>
+      <text x="496" y="20" text-anchor="end" fill="#f59e0b" font-size="14">RTT 26ms · 509 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="422" height="14" rx="7" fill="#f59e0b"/>
+    </g>
+    <g transform="translate(52, 442)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">新加坡</text>
+      <text x="496" y="20" text-anchor="end" fill="#f59e0b" font-size="14">RTT 43ms · 419 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="367" height="14" rx="7" fill="#f59e0b"/>
+    </g>
+    <g transform="translate(52, 534)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">日本 东京</text>
+      <text x="496" y="20" text-anchor="end" fill="#f59e0b" font-size="14">RTT 53ms · 150 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="243" height="14" rx="7" fill="#f59e0b"/>
+    </g>
+
+    <!-- Capability Pills -->
+    <text x="52" y="644" fill="#9397ab" font-size="12">VERIFIED SCENARIOS &amp; TAGS</text>
+    <g transform="translate(52, 662)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">Win/Mac/Linux</text>
+    </g>
+    <g transform="translate(306, 662)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">120G-1500G</text>
+    </g>
+    <g transform="translate(52, 706)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">不限时流量包</text>
+    </g>
+    <g transform="translate(306, 706)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">团队办公</text>
+    </g>
+  </g>
+</svg>

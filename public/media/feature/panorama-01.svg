@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Network Latency Spectrum">
+  <defs>
+    <linearGradient id="p1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b213e"/>
+      <stop offset="55%" stop-color="#15192e"/>
+      <stop offset="100%" stop-color="#0f1220"/>
+    </linearGradient>
+    <radialGradient id="pg1" cx="0.78" cy="0.32" r="0.55">
+      <stop offset="0%" stop-color="#b5abfc" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#38bdf8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#111322" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="pgrid1" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#b5abfc" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#p1)"/>
+  <rect width="1920" height="1080" fill="url(#pg1)"/>
+  <rect width="1920" height="1080" fill="url(#pgrid1)"/>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M 0 640 Q 420 340 940 520 T 1920 380" stroke="#b5abfc" stroke-opacity="0.32" stroke-width="2.5"/>
+    <path d="M 0 720 Q 480 460 980 610 T 1920 480" stroke="#38bdf8" stroke-opacity="0.28" stroke-width="2"/>
+    <path d="M 0 800 Q 520 580 1020 700 T 1920 580" stroke="#10b981" stroke-opacity="0.24" stroke-width="2"/>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" opacity="0.72">
+    <g transform="translate(1180, 160)">
+      <rect width="580" height="180" rx="12" fill="#171b30" fill-opacity="0.82" stroke="#3b4062"/>
+      <text x="28" y="38" fill="#b5abfc" font-weight="700">PEAK-HOUR VERIFICATION PROTOCOL // 20:00 - 23:00 CST</text>
+      <text x="28" y="74" fill="#e9e9ed">01 · Measured Snapshot: 17 Authentic 2026-08-11 Speedtest Archives</text>
+      <text x="28" y="106" fill="#cfd3e5">02 · Vendor Spec Check: Entry Pricing &amp; IEPL/IPLC Architecture</text>
+      <text x="28" y="138" fill="#6ee7b7">03 · Best Practice: Test Monthly or Unlimited Quota Before Annual Plan</text>
+    </g>
+  </g>
+</svg>

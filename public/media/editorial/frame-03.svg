@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-75 -80 1050 1360" width="900" height="1200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="AI 工具与流媒体解锁矩阵">
+  <defs>
+    <linearGradient id="lbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b1f36"/>
+      <stop offset="100%" stop-color="#121424"/>
+    </linearGradient>
+    <pattern id="lg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#10b981" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-150" y="-160" width="1200" height="1520" fill="url(#lbg)"/>
+  <rect x="-150" y="-160" width="1200" height="1520" fill="url(#lg)"/>
+  <rect x="32" y="32" width="836" height="1136" rx="16" fill="#171a2d" fill-opacity="0.9" stroke="#10b981" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <text x="68" y="86" fill="#10b981" font-size="14" font-weight="700">REPORT 03 // SERVICE AVAILABILITY MATRIX</text>
+    <text x="68" y="136" fill="#e9e9ed" font-size="34" font-weight="700" font-family="Inter, system-ui, sans-serif">AI 工具与流媒体解锁矩阵</text>
+    <text x="68" y="174" fill="#b2b6ca" font-size="16" font-family="Inter, system-ui, sans-serif">ChatGPT / Claude / Gemini / Netflix / Disney+ / TikTok 可用性核验</text>
+    <line x1="68" y1="204" x2="832" y2="204" stroke="#393e5e" stroke-width="1"/>
+
+    <g transform="translate(68, 228)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">OpenAI / ChatGPT</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">光速云/飞猫/微风/速界</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">原生/专线解锁</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Verified</text>
+    </g>
+    <g transform="translate(68, 368)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Anthropic Claude</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">光速云/微风/暮光/速界</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">低风控纯净IP</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Verified</text>
+    </g>
+    <g transform="translate(68, 508)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Google Gemini</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">需切换美/日/新原生节点</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">视落地节点而定</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Partial</text>
+    </g>
+    <g transform="translate(68, 648)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">Netflix / Disney+</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">全系 Top 10 均支持解锁</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">4K 原创与非自制剧</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Verified</text>
+    </g>
+    <g transform="translate(68, 788)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">YouTube Premium 4K</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">香港/新加坡/日本 &gt;380M</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">高码率零缓冲</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Verified</text>
+    </g>
+    <g transform="translate(68, 928)">
+      <rect width="764" height="96" rx="10" fill="#20243c" stroke="#343854"/>
+      <circle cx="24" cy="48" r="5" fill="#10b981"/>
+      <text x="44" y="42" fill="#e9e9ed" font-size="18" font-weight="600" font-family="Inter, system-ui, sans-serif">TikTok 跨区运营</text>
+      <text x="44" y="68" fill="#9397ab" font-size="14">光速云/无忧链接/星岛梦</text>
+      <text x="620" y="53" text-anchor="end" fill="#10b981" font-size="16" font-weight="600">电商直播与短视频</text>
+      <rect x="640" y="32" width="104" height="32" rx="6" fill="#10b981" fill-opacity="0.16"/>
+      <text x="692" y="53" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">Verified</text>
+    </g>
+
+    <text x="68" y="1140" fill="#9397ab" font-size="13">UNLOCK STATUS: AI 平台风控动态变化，标注“视节点而定”项需在客户端内切换落地地区</text>
+  </g>
+</svg>

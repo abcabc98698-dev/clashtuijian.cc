@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import { site } from '../config';
+import { asset } from '../utils';
+import SeoHead, { type SeoHeadProps } from '../components/SeoHead.astro';
+
+interface Props extends SeoHeadProps {
+  dark?: boolean;
+  pageStyle?: string;
+}
+
+const { dark = false, pageStyle, ...seoProps } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang={site.lang}>
+<head>
+  <SeoHead {...seoProps} />
+</head>
+<body style={`--logo: url("${asset(site.logo)}")`}>
+  <div class:list={['page', { dark }]} style={pageStyle}>
+    <div class="shade" aria-hidden="true"></div>
+    <slot />
+  </div>
+  <script>
+    import '../scripts/scroll.js';
+  </script>
+</body>
+</html>

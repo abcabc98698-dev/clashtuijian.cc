@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 -20 640 840" width="600" height="800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="光速云 GUANGSU Network Snapshot">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d2036"/>
+      <stop offset="100%" stop-color="#131524"/>
+    </linearGradient>
+    <pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#b5abfc" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="-40" y="-40" width="680" height="880" fill="url(#bg)"/>
+  <rect x="-40" y="-40" width="680" height="880" fill="url(#g)"/>
+  <rect x="24" y="24" width="552" height="752" rx="14" fill="#181b2e" fill-opacity="0.85" stroke="#b5abfc" stroke-opacity="0.38" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+    <rect x="52" y="54" width="210" height="28" rx="6" fill="#b5abfc" fill-opacity="0.16"/>
+    <circle cx="70" cy="68" r="4.5" fill="#b5abfc"/>
+    <text x="84" y="73" fill="#b5abfc" font-size="12" font-weight="700">TOP 01 · FLAGSHIP PICK</text>
+    <text x="548" y="73" text-anchor="end" fill="#9397ab" font-size="12">CODE: AMM</text>
+
+    <text x="52" y="132" fill="#e9e9ed" font-size="32" font-weight="700" font-family="Inter, system-ui, sans-serif">光速云 GUANGSU</text>
+    <text x="52" y="164" fill="#b2b6ca" font-size="15" font-family="Inter, system-ui, sans-serif">IEPL + 企业级内网专线 · VLESS</text>
+
+    <!-- Metric Box -->
+    <rect x="52" y="192" width="496" height="92" rx="10" fill="#21253d" stroke="#393e5e"/>
+    <text x="76" y="224" fill="#9397ab" font-size="12">ENTRY PRICING (VENDOR)</text>
+    <text x="76" y="260" fill="#e9e9ed" font-size="24" font-weight="700">¥8.2 / 月 (年付¥99)</text>
+    <rect x="356" y="214" width="168" height="44" rx="8" fill="#b5abfc" fill-opacity="0.18" stroke="#b5abfc" stroke-opacity="0.5"/>
+    <text x="440" y="241" text-anchor="middle" fill="#e9e9ed" font-size="13" font-weight="600">2020老牌 · 双线架构</text>
+
+    <!-- Speed Bars -->
+    <text x="52" y="328" fill="#9397ab" font-size="12">NODE TELEMETRY SNAPSHOT (HK / SG / JP)</text>
+    <g transform="translate(52, 350)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">香港×20</text>
+      <text x="496" y="20" text-anchor="end" fill="#b5abfc" font-size="14">RTT 22ms · 529 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="446" height="14" rx="7" fill="#b5abfc"/>
+    </g>
+    <g transform="translate(52, 442)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">新加坡×10</text>
+      <text x="496" y="20" text-anchor="end" fill="#b5abfc" font-size="14">RTT 46ms · 387 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="347" height="14" rx="7" fill="#b5abfc"/>
+    </g>
+    <g transform="translate(52, 534)">
+      <text x="0" y="20" fill="#e9e9ed" font-size="15" font-weight="600">日本×10</text>
+      <text x="496" y="20" text-anchor="end" fill="#b5abfc" font-size="14">RTT 57ms · 135 Mbps</text>
+      <rect x="0" y="34" width="496" height="14" rx="7" fill="#252942"/>
+      <rect x="0" y="34" width="228" height="14" rx="7" fill="#b5abfc"/>
+    </g>
+
+    <!-- Capability Pills -->
+    <text x="52" y="644" fill="#9397ab" font-size="12">VERIFIED SCENARIOS &amp; TAGS</text>
+    <g transform="translate(52, 662)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">Clash订阅支持</text>
+    </g>
+    <g transform="translate(306, 662)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">147永久套餐</text>
+    </g>
+    <g transform="translate(52, 706)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">单节点2.5Gbps</text>
+    </g>
+    <g transform="translate(306, 706)">
+      <rect width="240" height="34" rx="6" fill="#22263e" stroke="#3c405e"/>
+      <text x="120" y="22" text-anchor="middle" fill="#cfd3e5" font-size="13">第一主推</text>
+    </g>
+  </g>
+</svg>

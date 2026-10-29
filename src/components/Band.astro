@@ -1,0 +1,33 @@
+---
+import { panoBand } from '../config';
+import { asset } from '../utils';
+const [first, second] = panoBand.images;
+---
+<section id={panoBand.id} class="pano-band dark" data-scene="par" aria-label={panoBand.kicker}>
+  <div class="pano-photo lighten">
+    <img
+      src={asset(first.src)}
+      alt={first.alt}
+      width={first.width}
+      height={first.height}
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+  <div class="pano-photo pano-photo--next">
+    <img
+      src={asset(second.src)}
+      alt={second.alt}
+      width={second.width}
+      height={second.height}
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+  <div class="pano-wash" aria-hidden="true"></div>
+  <div class="pano-copy">
+    <div class="kicker">{panoBand.kicker}</div>
+    <blockquote class="rv" data-w="0.18 0.3">{panoBand.quote}</blockquote>
+    <p class="lede rv" data-w="0.26 0.3">{panoBand.lede}</p>
+  </div>
+</section>

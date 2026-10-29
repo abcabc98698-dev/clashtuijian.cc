@@ -1,0 +1,17 @@
+{
+  "name": "clashtuijian-web",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Independent official web portal for clashtuijian.cc",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^7.3.7"
+  }
+}
